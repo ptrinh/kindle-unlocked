@@ -1,0 +1,17 @@
+{
+  "manifest_version": 2,
+  "id": "kf-ha",
+  "name": "Home Assistant",
+  "author": "kindle.trinh.uk",
+  "description": "Show Home Assistant sensors and switches on an always-on e-ink panel.",
+  "version": [
+    0,
+    1,
+    0
+  ],
+  "dependencies": [],
+  "supported_platforms": [
+    "kindlehf",
+    "kindlepw2"
+  ]
+}

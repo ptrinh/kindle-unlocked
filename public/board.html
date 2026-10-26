@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Message Board</title>
+<meta name="theme-color" content="#000000">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/app.css">
+<style>
+  main { max-width: 640px; }
+  .who { color: var(--dim); margin: 2vh 0 6px; font-weight: 600; }
+  .compose { display: flex; flex-direction: column; gap: 14px; }
+  .compose textarea, .compose input[type=text] {
+    width: 100%; border: 0; border-radius: 20px; padding: 18px 20px; background: var(--glass); color: var(--text);
+    font: 600 22px/1.35 var(--font); outline: none; box-shadow: 0 0 0 1px var(--line) inset; resize: none;
+  }
+  .compose input[type=text] { font-size: 17px; padding: 15px 18px; border-radius: 16px; }
+  .compose :is(textarea, input):focus { box-shadow: 0 0 0 2px var(--text) inset; }
+  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .photo { position: relative; display: flex; align-items: center; justify-content: center; gap: 10px; padding: 15px; border-radius: 16px; background: var(--glass); cursor: pointer; font-weight: 600; }
+  .photo input { display: none; }
+  .photo.has { background: var(--glass-hi); }
+  .preview { margin-top: 26px; display: grid; place-items: center; padding: 26px; border-radius: 30px; background: var(--glass); }
+  .device { padding: 14px 14px 30px; border-radius: 26px; background: #1c1c1e; box-shadow: 0 30px 60px #000c, 0 0 0 1px #ffffff14 inset; }
+  .device canvas { display: block; width: min(300px, 62vw); height: auto; border-radius: 4px; background: #fff; }
+  .send { margin-top: 18px; width: 100%; }
+  .recent { margin-top: 36px; }
+  .recent h3 { font-size: 15px; color: var(--faint); text-transform: uppercase; letter-spacing: .06em; margin: 0 0 10px; }
+  .recent div { display: flex; justify-content: space-between; padding: 12px 4px; border-bottom: 1px solid var(--line); color: var(--dim); font-size: 15px; }
+  .ok { text-align: center; padding: 40px 0 10px; animation: enter .5s var(--ease) both; }
+  .ok .tick { width: 84px; height: 84px; border-radius: 50%; margin: 0 auto 18px; display: grid; place-items: center; background: var(--green); color: #000; font-size: 44px; font-weight: 800; }
+  .hint { margin-top: 10px; }
+</style>
+</head>
+<body>
+<div class="ambient" aria-hidden="true"><i></i><i></i><i></i></div>
+<header class="top">
+  <a class="brand" href="/"><span class="brand-mark" aria-hidden="true"></span>Kindle Free</a>
+  <nav class="dots"></nav>
+  <div class="lang" id="lang" role="group" aria-label="Language"></div>
+</header>
+<main id="app"></main>
+<script src="/board.js"></script>
+</body>
+</html>

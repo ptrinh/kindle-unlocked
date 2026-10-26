@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Kindle Free</title>
+<meta name="description" content="Turn your Kindle into a tiny computer. Unlock it from its own browser, then install apps like SSH, Tailscale and an always-on dashboard.">
+<meta name="theme-color" content="#000000">
+<meta property="og:title" content="Kindle Free">
+<meta property="og:description" content="Your Kindle, unlocked. No cables.">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/app.css">
+</head>
+<body>
+<div class="ambient" aria-hidden="true"><i></i><i></i><i></i></div>
+
+<header class="top">
+  <a class="brand" href="#/" data-focus>
+    <span class="brand-mark" aria-hidden="true"></span>Kindle Free
+  </a>
+  <nav class="dots" id="dots" aria-label="Progress"></nav>
+  <div class="lang" id="lang" role="group" aria-label="Language"></div>
+</header>
+
+<main id="app" tabindex="-1"></main>
+
+<div class="sheet" id="sheet" hidden>
+  <div class="sheet-backdrop" data-close></div>
+  <div class="sheet-card" role="dialog" aria-modal="true" id="sheet-card"></div>
+</div>
+
+<script src="/app.js"></script>
+</body>
+</html>

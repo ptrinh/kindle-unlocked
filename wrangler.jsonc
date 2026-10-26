@@ -1,0 +1,15 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "kindle-free",
+  "account_id": "2edc401e8f3f074f198d7290691817a3",
+  "main": "worker/index.js",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+    "run_worker_first": ["/r", "/d", "/b/*", "/api/*", "/mirror.ps1"]
+  },
+  "kv_namespaces": [{ "binding": "BOARD", "id": "04c760308e094b48930e2a97bd23d6dd" }],
+  "routes": [{ "pattern": "kindle.trinh.uk", "custom_domain": true }],
+  "observability": { "enabled": true }
+}

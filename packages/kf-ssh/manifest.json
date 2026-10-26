@@ -1,0 +1,17 @@
+{
+  "manifest_version": 2,
+  "id": "kf-ssh",
+  "name": "SSH",
+  "author": "kindle.trinh.uk",
+  "description": "SSH + SFTP server. Tap to turn on/off; shows address and password on screen.",
+  "version": [
+    0,
+    2,
+    0
+  ],
+  "dependencies": [],
+  "supported_platforms": [
+    "kindlehf",
+    "kindlepw2"
+  ]
+}

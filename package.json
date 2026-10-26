@@ -1,0 +1,12 @@
+{
+  "name": "kindle-free",
+  "private": true,
+  "scripts": {
+    "build": "./scripts/build.sh",
+    "dev": "wrangler dev",
+    "deploy": "./scripts/build.sh && wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^4"
+  }
+}

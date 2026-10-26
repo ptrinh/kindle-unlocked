@@ -1,0 +1,17 @@
+{
+  "manifest_version": 2,
+  "id": "kf-update",
+  "name": "Update Apps",
+  "author": "kindle.trinh.uk",
+  "description": "One tap to update every installed app (kpm update + upgrade).",
+  "version": [
+    0,
+    1,
+    0
+  ],
+  "dependencies": [],
+  "supported_platforms": [
+    "kindlehf",
+    "kindlepw2"
+  ]
+}

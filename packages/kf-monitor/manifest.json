@@ -1,0 +1,17 @@
+{
+  "manifest_version": 2,
+  "id": "kf-monitor",
+  "name": "Monitor",
+  "author": "kindle.trinh.uk",
+  "description": "Uptime checks for your websites and servers, with alerts via ntfy.",
+  "version": [
+    0,
+    1,
+    0
+  ],
+  "dependencies": [],
+  "supported_platforms": [
+    "kindlehf",
+    "kindlepw2"
+  ]
+}

@@ -1,0 +1,1 @@
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE0fhNrvy40R+dAcAPbF2RAhnlg/TMwhMwQf3onblcNL ptrinh@Phils-MacBook-Air.local

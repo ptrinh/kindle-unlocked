@@ -1,0 +1,17 @@
+{
+  "manifest_version": 2,
+  "id": "kf-calendar",
+  "name": "Calendar",
+  "author": "kindle.trinh.uk",
+  "description": "Today's date, your agenda (Google/iCal) and Todoist tasks on an always-on panel.",
+  "version": [
+    0,
+    1,
+    0
+  ],
+  "dependencies": [],
+  "supported_platforms": [
+    "kindlehf",
+    "kindlepw2"
+  ]
+}

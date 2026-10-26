@@ -6,7 +6,7 @@
   "description": "One tap to update every installed app (kpm update + upgrade).",
   "version": [
     0,
-    1,
+    2,
     0
   ],
   "dependencies": [],

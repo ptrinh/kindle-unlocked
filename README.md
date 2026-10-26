@@ -1,4 +1,4 @@
-# Kindle Free
+# Kindle Unlocked
 
 Turn a Kindle into a tiny always-on computer: unlock it from its own browser, then install apps with one line.
 

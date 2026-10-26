@@ -11,7 +11,7 @@ import (
 	"syscall"
 	"time"
 
-	"kindle.trinh.uk/kfree/internal/kindle"
+	"kindle.trinh.uk/unlocked/internal/kindle"
 )
 
 const showPath = "/tmp/kf-show.png"

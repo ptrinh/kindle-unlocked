@@ -6,7 +6,7 @@
   "description": "Always-on web dashboard: opens a page full screen and keeps the Kindle awake.",
   "version": [
     0,
-    2,
+    3,
     0
   ],
   "dependencies": [],

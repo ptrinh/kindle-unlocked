@@ -31,7 +31,7 @@ import (
 
 func main() {
 	addr := flag.String("addr", ":22", "listen address")
-	dir := flag.String("dir", "/mnt/us/kfree/ssh", "config directory")
+	dir := flag.String("dir", "/mnt/us/unlocked/ssh", "config directory")
 	shell := flag.String("shell", "/bin/sh", "login shell")
 	flag.Parse()
 

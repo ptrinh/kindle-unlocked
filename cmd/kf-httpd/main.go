@@ -29,14 +29,14 @@ import (
 	"sync"
 	"time"
 
-	"kindle.trinh.uk/kfree/internal/kindle"
+	"kindle.trinh.uk/unlocked/internal/kindle"
 )
 
 //go:embed web
 var webFS embed.FS
 
 var (
-	kfDir   = "/mnt/us/kfree"
+	kfDir   = "/mnt/us/unlocked"
 	docsDir = "/mnt/us/documents"
 	dataDir string // <kf>/http
 	port    string
@@ -46,7 +46,7 @@ var (
 
 func main() {
 	addr := flag.String("addr", ":8080", "listen address")
-	flag.StringVar(&kfDir, "kf", kfDir, "kfree data folder")
+	flag.StringVar(&kfDir, "kf", kfDir, "data folder")
 	flag.StringVar(&docsDir, "docs", docsDir, "Kindle documents folder")
 	noCard := flag.Bool("no-card", false, "don't draw the pairing card on start")
 	flag.Parse()
@@ -303,7 +303,7 @@ func ok(err error) (any, error) {
 
 const defaultIndex = `<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1">
 <title>Kindle</title><body style="font:20px system-ui,sans-serif;margin:3em auto;max-width:32em;padding:0 1em">
-<h1>Hello from my Kindle</h1><p>Edit <code>/mnt/us/kfree/www/index.html</code> to change this page.</p>`
+<h1>Hello from my Kindle</h1><p>Edit <code>/mnt/us/unlocked/www/index.html</code> to change this page.</p>`
 
 func ensureIndex() {
 	p := filepath.Join(kfDir, "www", "index.html")

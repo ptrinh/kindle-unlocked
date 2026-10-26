@@ -6,7 +6,7 @@
   "description": "Today's date, your agenda (Google/iCal) and Todoist tasks on an always-on panel.",
   "version": [
     0,
-    1,
+    2,
     0
   ],
   "dependencies": [],

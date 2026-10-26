@@ -495,11 +495,11 @@ const tabs = {
 
       <p class="section">${tr("Automation", "Tự động hoá", "自动化")}</p>
       <div class="card" id="scripts"><div class="empty">…</div></div>
-      <p class="hint">${tr("Each .sh file in <code>kfree/scripts</code> becomes a button.", "Mỗi file .sh trong <code>kfree/scripts</code> thành một nút.", "<code>kfree/scripts</code> 中的每个 .sh 文件都会变成一个按钮。")}</p>
+      <p class="hint">${tr("Each .sh file in <code>unlocked/scripts</code> becomes a button.", "Mỗi file .sh trong <code>unlocked/scripts</code> thành một nút.", "<code>unlocked/scripts</code> 中的每个 .sh 文件都会变成一个按钮。")}</p>
       <div class="btns one"><button class="btn" id="showtoken">${tr("API token + examples", "API token + ví dụ", "API token + 示例")}</button></div>
 
       <p class="section">HTTP Server</p>
-      <div class="card"><div class="row"><div class="grow">${tr("Remote web app", "Remote web app", "Remote 网页应用")}<small>${tr("Off = only serve kfree/www", "Tắt = chỉ phục vụ kfree/www", "关闭 = 只提供 kfree/www")}</small></div><input type="checkbox" class="switch" id="remote" checked></div></div>
+      <div class="card"><div class="row"><div class="grow">${tr("Remote web app", "Remote web app", "Remote 网页应用")}<small>${tr("Off = only serve unlocked/www", "Tắt = chỉ phục vụ unlocked/www", "关闭 = 只提供 unlocked/www")}</small></div><input type="checkbox" class="switch" id="remote" checked></div></div>
       <p class="hint">${tr("Add this page to your Home Screen for one-tap access. Your website lives at", "Thêm trang này ra màn hình chính để mở nhanh. Website của bạn ở", "把本页添加到主屏幕，一点即开。你的网站在")} <a href="/www/" style="color:var(--dim)">/www/</a></p>`;
   },
 };
@@ -612,7 +612,7 @@ const APP_NAMES = { board: "Message Board", ha: "Home Assistant", calendar: "Cal
 async function loadConfigs() {
   const box = $("#configs");
   const list = await api("/api/configs").catch(() => []);
-  box.innerHTML = list.map((a) => `<div class="row"><div class="grow"><div class="name">${esc(APP_NAMES[a] || a)}</div><small>kfree/${esc(a)}/config.json</small></div>
+  box.innerHTML = list.map((a) => `<div class="row"><div class="grow"><div class="name">${esc(APP_NAMES[a] || a)}</div><small>unlocked/${esc(a)}/config.json</small></div>
     <button class="link" data-cfg="${esc(a)}">${tr("Edit", "Sửa", "编辑")}</button></div>`).join("") || `<div class="empty">—</div>`;
   box.querySelectorAll("[data-cfg]").forEach((b) => b.addEventListener("click", () => editConfig(b.dataset.cfg)));
 }
@@ -657,7 +657,7 @@ curl -H "Authorization: Bearer $TOKEN" -F f=@book.epub ${base}/api/books
 #   Mac:      curl -fsSL https://kindle.trinh.uk/mirror.sh | bash
 #   Windows:  irm https://kindle.trinh.uk/mirror.ps1 | iex
 
-# run kfree/scripts/battery.sh
+# run unlocked/scripts/battery.sh
 curl -X POST -H "Authorization: Bearer $TOKEN" ${base}/api/scripts/battery`)}</pre>`);
 }
 

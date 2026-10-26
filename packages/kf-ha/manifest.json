@@ -6,7 +6,7 @@
   "description": "Show Home Assistant sensors and switches on an always-on e-ink panel.",
   "version": [
     0,
-    1,
+    2,
     0
   ],
   "dependencies": [],

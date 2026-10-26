@@ -1,6 +1,6 @@
 #!/bin/sh
 # Toggle Tailscale. First run shows a login link; or put an auth key in
-# /mnt/us/kfree/tailscale/authkey.txt to log in without one.
+# /mnt/us/unlocked/tailscale/authkey.txt to log in without one.
 . ./kf.sh
 dir="$KF/tailscale"
 sock=/tmp/kf-tailscaled.sock

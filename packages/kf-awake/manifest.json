@@ -6,7 +6,7 @@
   "description": "Stop the Kindle from sleeping (keeps Wi-Fi on). Tap again to allow sleep.",
   "version": [
     0,
-    2,
+    3,
     0
   ],
   "dependencies": [],

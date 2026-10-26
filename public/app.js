@@ -4,7 +4,7 @@
 
 const T = {
   en: {
-    heroKicker: "Kindle Free",
+    heroKicker: "Kindle Unlocked",
     hero: "Your Kindle, <em>unlocked.</em>",
     heroLead: "Turn it into a tiny always-on computer. Unlock it from its own browser, then add apps with one line.",
     start: "Get started",
@@ -53,10 +53,10 @@ const T = {
     mac1: "Install <b>HTTP Server</b> on the Kindle (with Remote on).", mac2: "In Remote, open Device → “API token + examples”.", mac3: "On your computer, run one line:",
     official: "OFFICIAL",
     detect: "Kindle",
-    foot: 'Unlock methods by the <a href="https://kindlemodding.org" target="_blank" rel="noopener">KindleModding</a> community. <a href="https://github.com/ptrinh/kindle-free" target="_blank" rel="noopener">GitHub Open Source</a>.',
+    foot: 'Unlock methods by the <a href="https://kindlemodding.org" target="_blank" rel="noopener">KindleModding</a> community. <a href="https://github.com/ptrinh/kindle-unlocked" target="_blank" rel="noopener">GitHub Open Source</a>.',
   },
   vi: {
-    heroKicker: "Kindle Free",
+    heroKicker: "Kindle Unlocked",
     hero: "Kindle của bạn, <em>tự do.</em>",
     heroLead: "Biến Kindle thành một máy tính nhỏ luôn bật. Mở khoá ngay trên trình duyệt của Kindle, rồi cài app chỉ với một dòng lệnh.",
     start: "Bắt đầu",
@@ -105,12 +105,12 @@ const T = {
     mac1: "Cài <b>HTTP Server</b> trên Kindle (bật Remote).", mac2: "Trong Remote, mở Thiết bị → “API token + ví dụ”.", mac3: "Trên máy tính, chạy một dòng:",
     official: "CHÍNH THỨC",
     detect: "Kindle",
-    foot: 'Các cách mở khoá do cộng đồng <a href="https://kindlemodding.org" target="_blank" rel="noopener">KindleModding</a> phát triển. <a href="https://github.com/ptrinh/kindle-free" target="_blank" rel="noopener">Mã nguồn mở trên GitHub</a>.',
+    foot: 'Các cách mở khoá do cộng đồng <a href="https://kindlemodding.org" target="_blank" rel="noopener">KindleModding</a> phát triển. <a href="https://github.com/ptrinh/kindle-unlocked" target="_blank" rel="noopener">Mã nguồn mở trên GitHub</a>.',
   },
 };
 
 T.zh = {
-  heroKicker: "Kindle Free",
+  heroKicker: "Kindle Unlocked",
   hero: "你的 Kindle，<em>解锁自由。</em>",
   heroLead: "把它变成一台常亮的小电脑。直接在 Kindle 自带浏览器里解锁，然后一行命令安装应用。",
   start: "开始",
@@ -159,7 +159,7 @@ T.zh = {
   mac1: "在 Kindle 上安装 <b>HTTP Server</b>（开启 Remote）。", mac2: "在 Remote 中打开 设备 → “API token + 示例”。", mac3: "在电脑上运行一行命令：",
   official: "官方",
   detect: "Kindle",
-  foot: '解锁方法由 <a href="https://kindlemodding.org" target="_blank" rel="noopener">KindleModding</a> 社区开发。<a href="https://github.com/ptrinh/kindle-free" target="_blank" rel="noopener">GitHub 开源</a>。',
+  foot: '解锁方法由 <a href="https://kindlemodding.org" target="_blank" rel="noopener">KindleModding</a> 社区开发。<a href="https://github.com/ptrinh/kindle-unlocked" target="_blank" rel="noopener">GitHub 开源</a>。',
 };
 
 const LANGS = [["en", "EN"], ["zh", "中文"], ["vi", "VI"]];
@@ -192,28 +192,28 @@ const APPS = [
     sub: { en: "Always-on web page", vi: "Trang web luôn bật" },
     desc: { en: "Shows a web page full screen and keeps the Kindle awake. Clock, weather — or any URL you like.", vi: "Hiện một trang web toàn màn hình và giữ Kindle luôn thức. Đồng hồ, thời tiết — hoặc URL bất kỳ." },
     use: { en: "The demo dashboard opens. Tap Dashboard again to exit.", vi: "Dashboard mẫu sẽ mở ra. Chạm Dashboard lần nữa để thoát." },
-    note: { en: "Use your own page: put its URL in <code>kfree/dash/url.txt</code>. Preview: <a href=\"/d\" target=\"_blank\">kindle.trinh.uk/d</a>", vi: "Dùng trang riêng: ghi URL vào <code>kfree/dash/url.txt</code>. Xem thử: <a href=\"/d\" target=\"_blank\">kindle.trinh.uk/d</a>" },
+    note: { en: "Use your own page: put its URL in <code>unlocked/dash/url.txt</code>. Preview: <a href=\"/d\" target=\"_blank\">kindle.trinh.uk/d</a>", vi: "Dùng trang riêng: ghi URL vào <code>unlocked/dash/url.txt</code>. Xem thử: <a href=\"/d\" target=\"_blank\">kindle.trinh.uk/d</a>" },
   },
   {
     id: "kf-tailscale", name: "Tailscale", icon: "tailscale", g: "linear-gradient(135deg,#4b4bff,#1a1a40)",
     sub: { en: "Reach it from anywhere", vi: "Truy cập từ mọi nơi" },
     desc: { en: "Puts your Kindle on your private Tailscale network, so SSH and the web server work from anywhere.", vi: "Đưa Kindle vào mạng riêng Tailscale, để SSH và web server dùng được từ mọi nơi." },
     use: { en: "A login link appears on the Kindle. Open it on your phone. Then the Kindle shows its address.", vi: "Kindle hiện một link đăng nhập. Mở link đó trên điện thoại. Sau đó Kindle hiện địa chỉ của nó." },
-    note: { en: "Install downloads ~30 MB from tailscale.com. No login link? Put an auth key in <code>kfree/tailscale/authkey.txt</code>.", vi: "Khi cài sẽ tải ~30 MB từ tailscale.com. Muốn bỏ qua link đăng nhập? Ghi auth key vào <code>kfree/tailscale/authkey.txt</code>." },
+    note: { en: "Install downloads ~30 MB from tailscale.com. No login link? Put an auth key in <code>unlocked/tailscale/authkey.txt</code>.", vi: "Khi cài sẽ tải ~30 MB từ tailscale.com. Muốn bỏ qua link đăng nhập? Ghi auth key vào <code>unlocked/tailscale/authkey.txt</code>." },
   },
   {
     id: "kf-ssh", name: "SSH", icon: "ssh", g: "linear-gradient(135deg,#1f9d55,#0b3d24)",
     sub: { en: "Terminal + file transfer", vi: "Terminal + chép file" },
     desc: { en: "Log in to your Kindle from a computer, and copy files with SFTP.", vi: "Đăng nhập Kindle từ máy tính, chép file bằng SFTP." },
     use: { en: "The Kindle shows its address and a password. On your computer run the ssh line it shows.", vi: "Kindle hiện địa chỉ và mật khẩu. Trên máy tính, chạy dòng ssh hiện trên màn hình." },
-    note: { en: "Prefer keys? Add yours to <code>kfree/ssh/authorized_keys</code>.", vi: "Dùng key? Thêm vào <code>kfree/ssh/authorized_keys</code>." },
+    note: { en: "Prefer keys? Add yours to <code>unlocked/ssh/authorized_keys</code>.", vi: "Dùng key? Thêm vào <code>unlocked/ssh/authorized_keys</code>." },
   },
   {
     id: "kf-http", name: "HTTP Server", icon: "http", g: "linear-gradient(135deg,#ff8a00,#a33b00)",
     sub: { en: "Remote control + web hosting", vi: "Điều khiển từ xa + chạy web" },
     desc: { en: "Control your Kindle from your phone: show photos, PDFs, notes and drawings, run a photo frame, send books, get a ping when it's online. Also hosts your own website.", vi: "Điều khiển Kindle từ điện thoại: hiện ảnh, PDF, ghi chú, nét vẽ, chạy khung ảnh, gửi sách, báo khi Kindle online. Kèm chạy website của riêng bạn." },
     use: { en: "A QR code appears on the Kindle. Scan it with your phone — done. Add the page to your Home Screen.", vi: "Kindle hiện mã QR. Quét bằng điện thoại là xong. Thêm trang đó ra màn hình chính." },
-    note: { en: "Only want the website? Tap <b>HTTP Server Settings</b> to switch the Remote app off. Scripts in <code>kfree/scripts</code> become buttons; there's an HTTP API too.", vi: "Chỉ cần website? Chạm <b>HTTP Server Settings</b> để tắt Remote. Script trong <code>kfree/scripts</code> thành nút bấm; có cả HTTP API." },
+    note: { en: "Only want the website? Tap <b>HTTP Server Settings</b> to switch the Remote app off. Scripts in <code>unlocked/scripts</code> become buttons; there's an HTTP API too.", vi: "Chỉ cần website? Chạm <b>HTTP Server Settings</b> để tắt Remote. Script trong <code>unlocked/scripts</code> thành nút bấm; có cả HTTP API." },
   },
   {
     id: "kf-awake", name: "Stay Awake", icon: "awake", g: "linear-gradient(135deg,#ffd60a,#b37400)",
@@ -301,10 +301,10 @@ const EASY_ORDER = ["SpiderCat", "Véra", "Sanctuary"];
 
 // Chinese copy for apps and on-device unlock steps.
 const ZH_APPS = {
-  "kf-dash": { sub: "常亮网页", desc: "全屏显示一个网页并让 Kindle 保持唤醒。时钟、天气，或任何网址。", use: "示例仪表盘会打开。再点一次 Dashboard 退出。", note: "使用自己的页面：把网址写进 <code>kfree/dash/url.txt</code>。预览：<a href=\"/d\" target=\"_blank\">kindle.trinh.uk/d</a>" },
-  "kf-tailscale": { sub: "随时随地访问", desc: "把 Kindle 加入你的 Tailscale 私有网络，SSH 和网页服务在任何地方都能用。", use: "Kindle 会显示一个登录链接，用手机打开它。之后 Kindle 会显示自己的地址。", note: "安装时会从 tailscale.com 下载约 30 MB。不想用登录链接？把 auth key 写进 <code>kfree/tailscale/authkey.txt</code>。" },
-  "kf-ssh": { sub: "终端 + 文件传输", desc: "从电脑登录 Kindle，并用 SFTP 传文件。", use: "Kindle 会显示地址和密码。在电脑上运行屏幕上的 ssh 命令。", note: "想用密钥？把公钥加到 <code>kfree/ssh/authorized_keys</code>。" },
-  "kf-http": { sub: "远程控制 + 网站托管", desc: "用手机控制 Kindle：显示照片、PDF、笔记和手绘，运行相框，发送电子书，上线时提醒你。还能托管你自己的网站。", use: "Kindle 会显示二维码，用手机扫一下即可。把页面添加到主屏幕。", note: "只要网站？点 <b>HTTP Server Settings</b> 关闭 Remote。<code>kfree/scripts</code> 里的脚本会变成按钮，还有 HTTP API。" },
+  "kf-dash": { sub: "常亮网页", desc: "全屏显示一个网页并让 Kindle 保持唤醒。时钟、天气，或任何网址。", use: "示例仪表盘会打开。再点一次 Dashboard 退出。", note: "使用自己的页面：把网址写进 <code>unlocked/dash/url.txt</code>。预览：<a href=\"/d\" target=\"_blank\">kindle.trinh.uk/d</a>" },
+  "kf-tailscale": { sub: "随时随地访问", desc: "把 Kindle 加入你的 Tailscale 私有网络，SSH 和网页服务在任何地方都能用。", use: "Kindle 会显示一个登录链接，用手机打开它。之后 Kindle 会显示自己的地址。", note: "安装时会从 tailscale.com 下载约 30 MB。不想用登录链接？把 auth key 写进 <code>unlocked/tailscale/authkey.txt</code>。" },
+  "kf-ssh": { sub: "终端 + 文件传输", desc: "从电脑登录 Kindle，并用 SFTP 传文件。", use: "Kindle 会显示地址和密码。在电脑上运行屏幕上的 ssh 命令。", note: "想用密钥？把公钥加到 <code>unlocked/ssh/authorized_keys</code>。" },
+  "kf-http": { sub: "远程控制 + 网站托管", desc: "用手机控制 Kindle：显示照片、PDF、笔记和手绘，运行相框，发送电子书，上线时提醒你。还能托管你自己的网站。", use: "Kindle 会显示二维码，用手机扫一下即可。把页面添加到主屏幕。", note: "只要网站？点 <b>HTTP Server Settings</b> 关闭 Remote。<code>unlocked/scripts</code> 里的脚本会变成按钮，还有 HTTP API。" },
   "kf-awake": { sub: "永不休眠", desc: "阻止 Kindle 休眠，让 Wi-Fi 保持连接。建议插电使用。", use: "再点一次 Stay Awake 恢复休眠。" },
   koreader: { sub: "更强大的阅读器", desc: "热门开源阅读器：EPUB、PDF、漫画、词典、同步。" },
   kterm: { sub: "Kindle 上的终端", desc: "带屏幕键盘的完整终端，直接在 Kindle 上运行。" },

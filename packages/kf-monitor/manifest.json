@@ -6,7 +6,7 @@
   "description": "Uptime checks for your websites and servers, with alerts via ntfy.",
   "version": [
     0,
-    1,
+    2,
     0
   ],
   "dependencies": [],

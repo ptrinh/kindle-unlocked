@@ -25,7 +25,7 @@ import (
 	"time"
 	_ "time/tzdata"
 
-	"kindle.trinh.uk/kfree/internal/kindle"
+	"kindle.trinh.uk/unlocked/internal/kindle"
 )
 
 type panel interface {
@@ -49,7 +49,7 @@ var (
 
 func main() {
 	mode := flag.String("mode", "board", "board | ha | calendar | monitor")
-	flag.StringVar(&kfDir, "kf", "/mnt/us/kfree", "kfree data folder")
+	flag.StringVar(&kfDir, "kf", "/mnt/us/unlocked", "data folder")
 	out := flag.String("out", "", "render once into this PNG (for testing) instead of the screen")
 	size := flag.String("size", "", "screen size WxH (default: detect)")
 	flag.Parse()
@@ -125,7 +125,7 @@ func errorScreen(c *Canvas, err error) {
 	c.Text(c.F(6, true), int(m), int(m), "Something's not right", 0)
 	c.Paragraph(c.F(3.6, false), int(m), int(m+c.U*12), c.W-int(2*m), err.Error(), 40, 12)
 	c.Paragraph(c.F(3, false), int(m), c.H-int(c.U*16), c.W-int(2*m),
-		"Edit the config.json for this app in the Remote web app (Device → Apps), or over USB in the kfree folder.", 90, 3)
+		"Edit the config.json for this app in the Remote web app (Device → Apps), or over USB in the unlocked folder.", 90, 3)
 }
 
 /* ---------- shared helpers ---------- */

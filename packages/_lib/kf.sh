@@ -1,7 +1,7 @@
 #!/bin/sh
 # Shared helpers for kindle.trinh.uk packages. Sourced by hooks and launch scripts.
 
-KF=/mnt/us/kfree
+KF=/mnt/us/unlocked
 mkdir -p "$KF"
 
 # say LINE...  - print to the KPM log and draw on the e-ink screen

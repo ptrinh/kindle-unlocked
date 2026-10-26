@@ -67,8 +67,8 @@ def main():
 
     repo = {
         "manifest_version": 2,
-        "id": "kfree",
-        "name": "Kindle Free",
+        "id": "unlocked",
+        "name": "Kindle Unlocked",
         "description": "Apps from kindle.trinh.uk",
         "packages": {},
     }

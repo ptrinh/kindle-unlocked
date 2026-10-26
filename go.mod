@@ -1,4 +1,4 @@
-module kindle.trinh.uk/kfree
+module kindle.trinh.uk/unlocked
 
 go 1.27.1
 

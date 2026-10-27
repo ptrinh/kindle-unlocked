@@ -1,0 +1,17 @@
+{
+  "manifest_version": 2,
+  "id": "ku-board",
+  "name": "Message Board",
+  "author": "kindle.trinh.uk",
+  "description": "Family message board: anyone with the link can send notes and photos to this Kindle.",
+  "version": [
+    0,
+    2,
+    0
+  ],
+  "dependencies": [],
+  "supported_platforms": [
+    "kindlehf",
+    "kindlepw2"
+  ]
+}

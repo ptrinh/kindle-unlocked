@@ -1,0 +1,17 @@
+{
+  "manifest_version": 2,
+  "id": "ku-http",
+  "name": "HTTP Server",
+  "author": "kindle.trinh.uk",
+  "description": "Web server for your Kindle, with an optional Remote web app to control it from your phone.",
+  "version": [
+    0,
+    3,
+    1
+  ],
+  "dependencies": [],
+  "supported_platforms": [
+    "kindlehf",
+    "kindlepw2"
+  ]
+}

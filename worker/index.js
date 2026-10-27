@@ -3,7 +3,7 @@
 //   /d               demo e-ink dashboard (clock + weather for the viewer's location)
 //   /api/jailbreaks  live copy of kindlemodding.org's jailbreak table, cached
 //   /b/<id>          family message board: send a note/photo to someone's Kindle
-//   /api/board/<id>  board storage (KV), polled by the kf-board app
+//   /api/board/<id>  board storage (KV), polled by the ku-board app
 
 const JB_URL = "https://kindlemodding.org/jailbreaks.json";
 

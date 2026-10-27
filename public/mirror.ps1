@@ -16,8 +16,8 @@ param(
 $ErrorActionPreference = "Stop"
 Add-Type -AssemblyName System.Drawing, System.Windows.Forms
 # Capture real pixels on scaled (HiDPI) displays.
-Add-Type -Namespace KF -Name Dpi -MemberDefinition '[DllImport("user32.dll")] public static extern bool SetProcessDPIAware();'
-[void][KF.Dpi]::SetProcessDPIAware()
+Add-Type -Namespace KU -Name Dpi -MemberDefinition '[DllImport("user32.dll")] public static extern bool SetProcessDPIAware();'
+[void][KU.Dpi]::SetProcessDPIAware()
 
 if (-not $Kindle) { $Kindle = Read-Host "Kindle address (e.g. 192.168.1.20:8080)" }
 if (-not $Token) {

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Pack packages/kf-* into .kpkg files and write the KPM repo manifest.
+"""Pack packages/ku-* into .kpkg files and write the KPM repo manifest.
 
 Output goes to public/repo/. Binaries come from build/ (see scripts/build.sh).
 """
@@ -13,12 +13,12 @@ PKGS = os.path.join(ROOT, "packages")
 OUT = os.path.join(ROOT, "public", "repo")
 BASE_URL = "https://kindle.trinh.uk/repo/"
 BINARIES = {
-    "kf-ssh": ["kf-sshd"],
-    "kf-http": ["kf-httpd"],
-    "kf-board": ["kf-panel"],
-    "kf-ha": ["kf-panel"],
-    "kf-calendar": ["kf-panel"],
-    "kf-monitor": ["kf-panel"],
+    "ku-ssh": ["ku-sshd"],
+    "ku-http": ["ku-httpd"],
+    "ku-board": ["ku-panel"],
+    "ku-ha": ["ku-panel"],
+    "ku-calendar": ["ku-panel"],
+    "ku-monitor": ["ku-panel"],
 }
 
 
@@ -47,7 +47,7 @@ def pack(pkg_id):
                 path = os.path.join(dirpath, name)
                 rel = os.path.relpath(path, src)
                 add(tar, rel, read(path), exe=name.endswith(".sh"))
-        add(tar, "kf.sh", read(os.path.join(PKGS, "_lib", "kf.sh")), exe=True)
+        add(tar, "ku.sh", read(os.path.join(PKGS, "_lib", "ku.sh")), exe=True)
         for b in BINARIES.get(pkg_id, []):
             add(tar, f"bin/{b}", read(os.path.join(ROOT, "build", b)), exe=True)
 
@@ -73,7 +73,7 @@ def main():
         "packages": {},
     }
     for pkg_id in sorted(os.listdir(PKGS)):
-        if not pkg_id.startswith("kf-"):
+        if not pkg_id.startswith("ku-"):
             continue
         manifest, artifact = pack(pkg_id)
         repo["packages"][pkg_id] = {

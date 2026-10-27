@@ -1,0 +1,17 @@
+{
+  "manifest_version": 2,
+  "id": "ku-dash",
+  "name": "Dashboard",
+  "author": "kindle.trinh.uk",
+  "description": "Always-on web dashboard: opens a page full screen and keeps the Kindle awake.",
+  "version": [
+    0,
+    3,
+    0
+  ],
+  "dependencies": [],
+  "supported_platforms": [
+    "kindlehf",
+    "kindlepw2"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "manifest_version": 2,
+  "id": "ku-tailscale",
+  "name": "Tailscale",
+  "author": "kindle.trinh.uk",
+  "description": "Join your Tailscale network so you can reach this Kindle from anywhere.",
+  "version": [
+    0,
+    3,
+    0
+  ],
+  "dependencies": [],
+  "supported_platforms": [
+    "kindlehf",
+    "kindlepw2"
+  ]
+}

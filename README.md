@@ -12,25 +12,25 @@ Turn a Kindle into a tiny always-on computer: unlock it from its own browser, th
    ```
    ;kpm add-repo kindle.trinh.uk/r
    ;kpm update
-   ;kpm install kf-http
+   ;kpm install ku-http
    ```
 
 ## Apps
 
 | Package | What it does |
 |---|---|
-| `kf-http` | **HTTP Server**: hosts a website, plus an optional **Remote** web app for your phone. Remote pairs with a QR code and can show photos, PDFs, notes and drawings on the screen. It also runs a photo frame, sends books, takes screenshots, controls the light, runs scripts, and has an HTTP API. |
-| `kf-board` | **Message Board**: family members send notes and photos from `kindle.trinh.uk/b/…` |
-| `kf-calendar` | **Calendar**: agenda from iCal links (Google Calendar…) and Todoist tasks |
-| `kf-ha` | **Home Assistant**: wall panel showing your entities |
-| `kf-monitor` | **Monitor**: uptime checks with history and ntfy alerts |
-| `kf-ssh` | SSH + SFTP server |
-| `kf-tailscale` | Joins your Tailscale network (userspace networking, so no TUN is needed) |
-| `kf-dash` | Always-on web page (demo: `kindle.trinh.uk/d`) |
-| `kf-awake` | Keeps the Kindle (and Wi-Fi) awake |
-| `kf-update` | One tap to update every app |
+| `ku-http` | **HTTP Server**: hosts a website, plus an optional **Remote** web app for your phone. Remote pairs with a QR code and can show photos, PDFs, notes and drawings on the screen. It also runs a photo frame, sends books, takes screenshots, controls the light, runs scripts, and has an HTTP API. |
+| `ku-board` | **Message Board**: family members send notes and photos from `kindle.trinh.uk/b/…` |
+| `ku-calendar` | **Calendar**: agenda from iCal links (Google Calendar…) and Todoist tasks |
+| `ku-ha` | **Home Assistant**: wall panel showing your entities |
+| `ku-monitor` | **Monitor**: uptime checks with history and ntfy alerts |
+| `ku-ssh` | SSH + SFTP server |
+| `ku-tailscale` | Joins your Tailscale network (userspace networking, so no TUN is needed) |
+| `ku-dash` | Always-on web page (demo: `kindle.trinh.uk/d`) |
+| `ku-awake` | Keeps the Kindle (and Wi-Fi) awake |
+| `ku-update` | One tap to update every app |
 
-**PC Mirror** shows your computer screen on the Kindle. It needs `kf-http` with Remote on.
+**PC Mirror** shows your computer screen on the Kindle. It needs `ku-http` with Remote on.
 
 - Mac: `curl -fsSL kindle.trinh.uk/mirror.sh | bash`
 - Windows: `irm kindle.trinh.uk/mirror.ps1 | iex`
@@ -38,11 +38,11 @@ Turn a Kindle into a tiny always-on computer: unlock it from its own browser, th
 ## Layout
 
 ```
-cmd/kf-sshd     SSH/SFTP server (Go)
-cmd/kf-httpd    HTTP Server + Remote web app (Go, web/ embedded)
-cmd/kf-panel    e-ink panels: board, calendar, ha, monitor (Go)
+cmd/ku-sshd     SSH/SFTP server (Go)
+cmd/ku-httpd    HTTP Server + Remote web app (Go, web/ embedded)
+cmd/ku-panel    e-ink panels: board, calendar, ha, monitor (Go)
 internal/kindle drawing on the e-ink screen, lipc, framebuffer
-packages/       KPM packages (shell hooks + scriptlets); _lib/kf.sh is shared
+packages/       KPM packages (shell hooks + scriptlets); _lib/ku.sh is shared
 public/         kindle.trinh.uk static site, board page, mirror scripts
 worker/         Cloudflare Worker: /r repo, /d dashboard, /b board, APIs
 scripts/        build.sh (ARMv7 binaries + .kpkg repo)
@@ -59,7 +59,7 @@ npm run deploy   # build + wrangler deploy
 Render a panel on your computer to try it:
 
 ```
-go run ./cmd/kf-panel -mode calendar -kf /tmp/kf -out calendar.png -size 1072x1448
+go run ./cmd/ku-panel -mode calendar -ku /tmp/ku -out calendar.png -size 1072x1448
 ```
 
 ## Credits

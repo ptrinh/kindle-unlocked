@@ -1,0 +1,17 @@
+{
+  "manifest_version": 2,
+  "id": "ku-awake",
+  "name": "Stay Awake",
+  "author": "kindle.trinh.uk",
+  "description": "Stop the Kindle from sleeping (keeps Wi-Fi on). Tap again to allow sleep.",
+  "version": [
+    0,
+    3,
+    0
+  ],
+  "dependencies": [],
+  "supported_platforms": [
+    "kindlehf",
+    "kindlepw2"
+  ]
+}

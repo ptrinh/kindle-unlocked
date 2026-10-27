@@ -164,7 +164,7 @@ T.zh = {
 
 const LANGS = [["en", "EN"], ["zh", "中文"], ["vi", "VI"]];
 let lang = /^vi/i.test(navigator.language || "") ? "vi" : /^zh/i.test(navigator.language || "") ? "zh" : "en";
-try { const v = localStorage.getItem("kf.lang"); if (T[v]) lang = v; } catch (e) {}
+try { const v = localStorage.getItem("ku.lang"); if (T[v]) lang = v; } catch (e) {}
 const t = (k) => T[lang][k] ?? T.en[k];
 const L = (o) => (typeof o === "string" ? o : o[lang] ?? o.en);
 
@@ -188,62 +188,62 @@ const ICONS = {
 
 const APPS = [
   {
-    id: "kf-dash", name: "Dashboard", icon: "dash", g: "linear-gradient(135deg,#3a3a3c,#0b0b0c)",
+    id: "ku-dash", name: "Dashboard", icon: "dash", g: "linear-gradient(135deg,#3a3a3c,#0b0b0c)",
     sub: { en: "Always-on web page", vi: "Trang web luôn bật" },
     desc: { en: "Shows a web page full screen and keeps the Kindle awake. Clock, weather — or any URL you like.", vi: "Hiện một trang web toàn màn hình và giữ Kindle luôn thức. Đồng hồ, thời tiết — hoặc URL bất kỳ." },
     use: { en: "The demo dashboard opens. Tap Dashboard again to exit.", vi: "Dashboard mẫu sẽ mở ra. Chạm Dashboard lần nữa để thoát." },
     note: { en: "Use your own page: put its URL in <code>unlocked/dash/url.txt</code>. Preview: <a href=\"/d\" target=\"_blank\">kindle.trinh.uk/d</a>", vi: "Dùng trang riêng: ghi URL vào <code>unlocked/dash/url.txt</code>. Xem thử: <a href=\"/d\" target=\"_blank\">kindle.trinh.uk/d</a>" },
   },
   {
-    id: "kf-tailscale", name: "Tailscale", icon: "tailscale", g: "linear-gradient(135deg,#4b4bff,#1a1a40)",
+    id: "ku-tailscale", name: "Tailscale", icon: "tailscale", g: "linear-gradient(135deg,#4b4bff,#1a1a40)",
     sub: { en: "Reach it from anywhere", vi: "Truy cập từ mọi nơi" },
     desc: { en: "Puts your Kindle on your private Tailscale network, so SSH and the web server work from anywhere.", vi: "Đưa Kindle vào mạng riêng Tailscale, để SSH và web server dùng được từ mọi nơi." },
     use: { en: "A login link appears on the Kindle. Open it on your phone. Then the Kindle shows its address.", vi: "Kindle hiện một link đăng nhập. Mở link đó trên điện thoại. Sau đó Kindle hiện địa chỉ của nó." },
     note: { en: "Install downloads ~30 MB from tailscale.com. No login link? Put an auth key in <code>unlocked/tailscale/authkey.txt</code>.", vi: "Khi cài sẽ tải ~30 MB từ tailscale.com. Muốn bỏ qua link đăng nhập? Ghi auth key vào <code>unlocked/tailscale/authkey.txt</code>." },
   },
   {
-    id: "kf-ssh", name: "SSH", icon: "ssh", g: "linear-gradient(135deg,#1f9d55,#0b3d24)",
+    id: "ku-ssh", name: "SSH", icon: "ssh", g: "linear-gradient(135deg,#1f9d55,#0b3d24)",
     sub: { en: "Terminal + file transfer", vi: "Terminal + chép file" },
     desc: { en: "Log in to your Kindle from a computer, and copy files with SFTP.", vi: "Đăng nhập Kindle từ máy tính, chép file bằng SFTP." },
     use: { en: "The Kindle shows its address and a password. On your computer run the ssh line it shows.", vi: "Kindle hiện địa chỉ và mật khẩu. Trên máy tính, chạy dòng ssh hiện trên màn hình." },
     note: { en: "Prefer keys? Add yours to <code>unlocked/ssh/authorized_keys</code>.", vi: "Dùng key? Thêm vào <code>unlocked/ssh/authorized_keys</code>." },
   },
   {
-    id: "kf-http", name: "HTTP Server", icon: "http", g: "linear-gradient(135deg,#ff8a00,#a33b00)",
+    id: "ku-http", name: "HTTP Server", icon: "http", g: "linear-gradient(135deg,#ff8a00,#a33b00)",
     sub: { en: "Remote control + web hosting", vi: "Điều khiển từ xa + chạy web" },
     desc: { en: "Control your Kindle from your phone: show photos, PDFs, notes and drawings, run a photo frame, send books, get a ping when it's online. Also hosts your own website.", vi: "Điều khiển Kindle từ điện thoại: hiện ảnh, PDF, ghi chú, nét vẽ, chạy khung ảnh, gửi sách, báo khi Kindle online. Kèm chạy website của riêng bạn." },
     use: { en: "A QR code appears on the Kindle. Scan it with your phone — done. Add the page to your Home Screen.", vi: "Kindle hiện mã QR. Quét bằng điện thoại là xong. Thêm trang đó ra màn hình chính." },
     note: { en: "Only want the website? Tap <b>HTTP Server Settings</b> to switch the Remote app off. Scripts in <code>unlocked/scripts</code> become buttons; there's an HTTP API too.", vi: "Chỉ cần website? Chạm <b>HTTP Server Settings</b> để tắt Remote. Script trong <code>unlocked/scripts</code> thành nút bấm; có cả HTTP API." },
   },
   {
-    id: "kf-awake", name: "Stay Awake", icon: "awake", g: "linear-gradient(135deg,#ffd60a,#b37400)",
+    id: "ku-awake", name: "Stay Awake", icon: "awake", g: "linear-gradient(135deg,#ffd60a,#b37400)",
     sub: { en: "Never sleep", vi: "Không bao giờ ngủ" },
     desc: { en: "Stops the Kindle from sleeping, so Wi-Fi stays on. Best while plugged in.", vi: "Không cho Kindle ngủ, để Wi-Fi luôn bật. Nên cắm sạc khi dùng." },
     use: { en: "Tap Stay Awake again to allow sleep.", vi: "Chạm Stay Awake lần nữa để cho ngủ lại." },
   },
   {
-    id: "kf-board", name: "Message Board", icon: "board", g: "linear-gradient(135deg,#ff375f,#7a0a2a)",
+    id: "ku-board", name: "Message Board", icon: "board", g: "linear-gradient(135deg,#ff375f,#7a0a2a)",
     sub: { en: "Family notes & photos", vi: "Lời nhắn & ảnh gia đình", zh: "家庭留言与照片" },
     desc: { en: "Turn the Kindle into a fridge-door board. Anyone with the link can send a note or photo from their phone — perfect for grandparents.", vi: "Biến Kindle thành bảng tin gia đình. Ai có link đều gửi được lời nhắn hoặc ảnh từ điện thoại — rất hợp cho ông bà.", zh: "把 Kindle 变成冰箱门上的留言板。有链接的人都能用手机发送留言或照片——很适合送给长辈。" },
     use: { en: "The Kindle shows a QR code. Share that link with family; new messages appear within a minute.", vi: "Kindle hiện mã QR. Chia sẻ link đó cho cả nhà; tin mới hiện trong vòng một phút.", zh: "Kindle 会显示二维码。把链接分享给家人，新留言一分钟内出现。" },
     note: { en: "Rename it in Remote → Device → Apps → Message Board.", vi: "Đổi tên ở Remote → Thiết bị → Ứng dụng → Message Board.", zh: "可在 Remote → 设备 → 应用 → Message Board 中改名。" },
   },
   {
-    id: "kf-calendar", name: "Calendar", icon: "cal", g: "linear-gradient(135deg,#ff9f0a,#8a3b00)",
+    id: "ku-calendar", name: "Calendar", icon: "cal", g: "linear-gradient(135deg,#ff9f0a,#8a3b00)",
     sub: { en: "Agenda + to-dos", vi: "Lịch + việc cần làm", zh: "日程 + 待办" },
     desc: { en: "Today's date, your agenda from Google Calendar (or any iCal link) and Todoist tasks, always on.", vi: "Ngày hôm nay, lịch từ Google Calendar (hoặc link iCal bất kỳ) và việc cần làm Todoist, luôn hiển thị.", zh: "今天的日期、Google 日历（或任何 iCal 链接）的日程和 Todoist 待办，常亮显示。" },
     use: { en: "Add your calendar's iCal link in Remote → Device → Apps → Calendar.", vi: "Thêm link iCal của lịch ở Remote → Thiết bị → Ứng dụng → Calendar.", zh: "在 Remote → 设备 → 应用 → Calendar 中添加日历的 iCal 链接。" },
     note: { en: "Google Calendar: Settings → your calendar → “Secret address in iCal format”.", vi: "Google Calendar: Cài đặt → lịch của bạn → “Địa chỉ bí mật ở định dạng iCal”.", zh: "Google 日历：设置 → 你的日历 → “iCal 格式的私密地址”。" },
   },
   {
-    id: "kf-ha", name: "Home Assistant", icon: "home", g: "linear-gradient(135deg,#18bcf2,#03507a)",
+    id: "ku-ha", name: "Home Assistant", icon: "home", g: "linear-gradient(135deg,#18bcf2,#03507a)",
     sub: { en: "Smart-home panel", vi: "Bảng nhà thông minh", zh: "智能家居面板" },
     desc: { en: "Your Home Assistant sensors and switches on a wall panel that lasts weeks per charge.", vi: "Cảm biến và công tắc Home Assistant trên một bảng treo tường.", zh: "把 Home Assistant 的传感器和开关显示在墙上的面板上。" },
     use: { en: "Add your HA address, a long-lived token and the entities in Remote → Device → Apps → Home Assistant.", vi: "Thêm địa chỉ HA, long-lived token và các entity ở Remote → Thiết bị → Ứng dụng → Home Assistant.", zh: "在 Remote → 设备 → 应用 → Home Assistant 中填写 HA 地址、长期令牌和实体。" },
     note: { en: "Token: Home Assistant → Profile → Security → Long-lived access tokens.", vi: "Token: Home Assistant → Hồ sơ → Bảo mật → Long-lived access tokens.", zh: "令牌：Home Assistant → 个人资料 → 安全 → 长期访问令牌。" },
   },
   {
-    id: "kf-monitor", name: "Monitor", icon: "pulse", g: "linear-gradient(135deg,#64d2ff,#0b3a5a)",
+    id: "ku-monitor", name: "Monitor", icon: "pulse", g: "linear-gradient(135deg,#64d2ff,#0b3a5a)",
     sub: { en: "Is everything up?", vi: "Mọi thứ còn chạy?", zh: "服务都正常吗？" },
     desc: { en: "Checks your websites and servers every minute, with a history bar for each and a phone alert when something goes down.", vi: "Kiểm tra website và server mỗi phút, có lịch sử cho từng cái và báo về điện thoại khi có sự cố.", zh: "每分钟检查网站和服务器，显示历史记录，出故障时推送到手机。" },
     use: { en: "List what to check in Remote → Device → Apps → Monitor.", vi: "Khai báo những gì cần kiểm tra ở Remote → Thiết bị → Ứng dụng → Monitor.", zh: "在 Remote → 设备 → 应用 → Monitor 中列出要检查的服务。" },
@@ -256,7 +256,7 @@ const APPS = [
     note: { en: "Needs the HTTP Server app with Remote on.", vi: "Cần app HTTP Server và bật Remote.", zh: "需要安装 HTTP Server 并开启 Remote。" },
   },
   {
-    id: "kf-update", name: "Update Apps", icon: "update", g: "linear-gradient(135deg,#30d158,#0a4a22)",
+    id: "ku-update", name: "Update Apps", icon: "update", g: "linear-gradient(135deg,#30d158,#0a4a22)",
     sub: { en: "One tap updates", vi: "Cập nhật một chạm", zh: "一键更新" },
     desc: { en: "Updates every installed app — ours and the official ones — with one tap.", vi: "Cập nhật mọi app đã cài — của mình và app chính thức — chỉ với một chạm.", zh: "一键更新所有已安装的应用（包括官方应用）。" },
     use: { en: "Tap Update Apps whenever you like.", vi: "Chạm Update Apps bất cứ lúc nào.", zh: "随时点 Update Apps 即可。" },
@@ -301,11 +301,11 @@ const EASY_ORDER = ["SpiderCat", "Véra", "Sanctuary"];
 
 // Chinese copy for apps and on-device unlock steps.
 const ZH_APPS = {
-  "kf-dash": { sub: "常亮网页", desc: "全屏显示一个网页并让 Kindle 保持唤醒。时钟、天气，或任何网址。", use: "示例仪表盘会打开。再点一次 Dashboard 退出。", note: "使用自己的页面：把网址写进 <code>unlocked/dash/url.txt</code>。预览：<a href=\"/d\" target=\"_blank\">kindle.trinh.uk/d</a>" },
-  "kf-tailscale": { sub: "随时随地访问", desc: "把 Kindle 加入你的 Tailscale 私有网络，SSH 和网页服务在任何地方都能用。", use: "Kindle 会显示一个登录链接，用手机打开它。之后 Kindle 会显示自己的地址。", note: "安装时会从 tailscale.com 下载约 30 MB。不想用登录链接？把 auth key 写进 <code>unlocked/tailscale/authkey.txt</code>。" },
-  "kf-ssh": { sub: "终端 + 文件传输", desc: "从电脑登录 Kindle，并用 SFTP 传文件。", use: "Kindle 会显示地址和密码。在电脑上运行屏幕上的 ssh 命令。", note: "想用密钥？把公钥加到 <code>unlocked/ssh/authorized_keys</code>。" },
-  "kf-http": { sub: "远程控制 + 网站托管", desc: "用手机控制 Kindle：显示照片、PDF、笔记和手绘，运行相框，发送电子书，上线时提醒你。还能托管你自己的网站。", use: "Kindle 会显示二维码，用手机扫一下即可。把页面添加到主屏幕。", note: "只要网站？点 <b>HTTP Server Settings</b> 关闭 Remote。<code>unlocked/scripts</code> 里的脚本会变成按钮，还有 HTTP API。" },
-  "kf-awake": { sub: "永不休眠", desc: "阻止 Kindle 休眠，让 Wi-Fi 保持连接。建议插电使用。", use: "再点一次 Stay Awake 恢复休眠。" },
+  "ku-dash": { sub: "常亮网页", desc: "全屏显示一个网页并让 Kindle 保持唤醒。时钟、天气，或任何网址。", use: "示例仪表盘会打开。再点一次 Dashboard 退出。", note: "使用自己的页面：把网址写进 <code>unlocked/dash/url.txt</code>。预览：<a href=\"/d\" target=\"_blank\">kindle.trinh.uk/d</a>" },
+  "ku-tailscale": { sub: "随时随地访问", desc: "把 Kindle 加入你的 Tailscale 私有网络，SSH 和网页服务在任何地方都能用。", use: "Kindle 会显示一个登录链接，用手机打开它。之后 Kindle 会显示自己的地址。", note: "安装时会从 tailscale.com 下载约 30 MB。不想用登录链接？把 auth key 写进 <code>unlocked/tailscale/authkey.txt</code>。" },
+  "ku-ssh": { sub: "终端 + 文件传输", desc: "从电脑登录 Kindle，并用 SFTP 传文件。", use: "Kindle 会显示地址和密码。在电脑上运行屏幕上的 ssh 命令。", note: "想用密钥？把公钥加到 <code>unlocked/ssh/authorized_keys</code>。" },
+  "ku-http": { sub: "远程控制 + 网站托管", desc: "用手机控制 Kindle：显示照片、PDF、笔记和手绘，运行相框，发送电子书，上线时提醒你。还能托管你自己的网站。", use: "Kindle 会显示二维码，用手机扫一下即可。把页面添加到主屏幕。", note: "只要网站？点 <b>HTTP Server Settings</b> 关闭 Remote。<code>unlocked/scripts</code> 里的脚本会变成按钮，还有 HTTP API。" },
+  "ku-awake": { sub: "永不休眠", desc: "阻止 Kindle 休眠，让 Wi-Fi 保持连接。建议插电使用。", use: "再点一次 Stay Awake 恢复休眠。" },
   koreader: { sub: "更强大的阅读器", desc: "热门开源阅读器：EPUB、PDF、漫画、词典、同步。" },
   kterm: { sub: "Kindle 上的终端", desc: "带屏幕键盘的完整终端，直接在 Kindle 上运行。" },
 };
@@ -328,10 +328,10 @@ let JAILBREAKS = [];
 
 const state = load();
 function load() {
-  try { return JSON.parse(localStorage.getItem("kf.state")) || {}; } catch (e) { return {}; }
+  try { return JSON.parse(localStorage.getItem("ku.state")) || {}; } catch (e) { return {}; }
 }
 function save() {
-  try { localStorage.setItem("kf.state", JSON.stringify(state)); } catch (e) {}
+  try { localStorage.setItem("ku.state", JSON.stringify(state)); } catch (e) {}
 }
 
 /* ---------- Logic ---------- */
@@ -697,7 +697,7 @@ document.getElementById("lang").addEventListener("click", (e) => {
   const b = e.target.closest("[data-lang]");
   if (!b || b.dataset.lang === lang) return;
   lang = b.dataset.lang;
-  try { localStorage.setItem("kf.lang", lang); } catch (e) {}
+  try { localStorage.setItem("ku.lang", lang); } catch (e) {}
   render();
 });
 
@@ -722,3 +722,6 @@ async function getJSON(urls) {
   ]);
   render();
 })();
+
+// Works offline once loaded (sw.js).
+if ("serviceWorker" in navigator) navigator.serviceWorker.register("/sw.js").catch(() => {});

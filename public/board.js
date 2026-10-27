@@ -7,7 +7,7 @@
 const id = location.pathname.split("/")[2] || "";
 const LANGS = [["en", "EN"], ["zh", "中文"], ["vi", "VI"]];
 let lang = /^vi/i.test(navigator.language) ? "vi" : /^zh/i.test(navigator.language) ? "zh" : "en";
-try { const v = localStorage.getItem("kf.lang"); if (LANGS.some(([k]) => k === v)) lang = v; } catch (e) {}
+try { const v = localStorage.getItem("ku.lang"); if (LANGS.some(([k]) => k === v)) lang = v; } catch (e) {}
 const tr = (en, vi, zh) => (lang === "vi" ? vi : lang === "zh" ? zh : en);
 const $ = (s) => document.querySelector(s);
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
@@ -20,7 +20,7 @@ function render() {
   document.documentElement.lang = lang;
   $("#lang").innerHTML = LANGS.map(([k, n]) => `<button data-lang="${k}" class="${k === lang ? "on" : ""}">${n}</button>`).join("");
   const text = $("#msg")?.value ?? "";
-  const from = $("#from")?.value ?? (localStorage.getItem("kf.from") || "");
+  const from = $("#from")?.value ?? (localStorage.getItem("ku.from") || "");
   $("#app").innerHTML = `<section class="screen">
     <p class="who">${tr("Message board", "Bảng tin", "留言板")}</p>
     <h1>${esc(info.name)}</h1>
@@ -128,7 +128,7 @@ async function send() {
   const btn = $("#send");
   btn.disabled = true;
   const from = $("#from").value.trim();
-  try { localStorage.setItem("kf.from", from); } catch (e) {}
+  try { localStorage.setItem("ku.from", from); } catch (e) {}
   const blob = await new Promise((r) => canvas.toBlob(r, "image/png"));
   const res = await fetch(`/api/board/${id}`, { method: "POST", body: blob, headers: { "X-From": encodeURIComponent(from) } });
   if (!res.ok) {
@@ -146,7 +146,7 @@ $("#lang").addEventListener("click", (e) => {
   const b = e.target.closest("[data-lang]");
   if (!b) return;
   lang = b.dataset.lang;
-  try { localStorage.setItem("kf.lang", lang); } catch (err) {}
+  try { localStorage.setItem("ku.lang", lang); } catch (err) {}
   render();
 });
 

@@ -458,6 +458,12 @@ const tabs = {
         <div class="card" id="blist"><div class="empty">…</div></div>`}`;
   },
 
+  apps() {
+    return `<h2>${tr("Apps", "Ứng dụng", "应用")}</h2><p class="sub">${tr("Install apps on the Kindle from here. No typing on the Kindle.", "Cài app cho Kindle ngay tại đây, khỏi gõ trên Kindle.", "在这里为 Kindle 安装应用，无需在 Kindle 上输入。")}</p>
+      <div class="card" id="applist"><div class="empty">…</div></div>
+      <p class="hint">${tr("Open = same as tapping the app in the Kindle's Library.", "Mở = giống chạm vào app trong Library của Kindle.", "打开 = 相当于在 Kindle 图书馆里点该应用。")}</p>`;
+  },
+
   device() {
     const s = status;
     return `<h2>${tr("Device", "Thiết bị", "设备")}</h2><p class="sub">${s.battery}% · ${s.charging ? tr("charging", "đang sạc", "充电中") : tr("on battery", "dùng pin", "使用电池")}</p>
@@ -571,6 +577,7 @@ function wireTab() {
   }
   const fview = $("#fview", v);
   if (fview) seg(fview, (m) => { filesView = m; renderTab(); });
+  if ($("#applist", v)) loadApps();
   if ($("#scripts", v)) loadScripts();
   if ($("#configs", v)) loadConfigs();
   const tok = $("#showtoken", v);
@@ -606,6 +613,49 @@ async function loadScripts() {
       $("#out", card).textContent = e.message;
     }
   }));
+}
+
+const CATALOG_URL = "https://kindle.trinh.uk/r";
+let catalog = null;
+
+async function loadApps() {
+  const box = $("#applist");
+  if (!box) return;
+  try {
+    if (!catalog) catalog = (await (await fetch(CATALOG_URL)).json()).packages;
+  } catch (e) {
+    box.innerHTML = `<div class="empty">${tr("Can't reach kindle.trinh.uk. Is your phone online?", "Không tải được kindle.trinh.uk. Điện thoại có mạng không?", "无法访问 kindle.trinh.uk，手机联网了吗？")}</div>`;
+    return;
+  }
+  const st = await api("/api/apps").catch(() => null);
+  if (!st || !$("#applist")) return;
+  const doing = { install: tr("Installing…", "Đang cài…", "安装中…"), uninstall: tr("Removing…", "Đang gỡ…", "卸载中…"), launch: tr("Opening…", "Đang mở…", "打开中…") };
+  box.innerHTML = Object.entries(catalog).map(([id, p]) => {
+    const has = st.installed.includes(id);
+    let btns;
+    if (st.busy === id) btns = `<span class="val">${doing[st.action]}</span>`;
+    else if (!has) btns = `<button class="link" data-app="${esc(id)}" data-a="install" ${st.busy ? "disabled" : ""}>${tr("Install", "Cài", "安装")}</button>`;
+    else btns = `<button class="link" data-app="${esc(id)}" data-a="launch" ${st.busy ? "disabled" : ""}>${tr("Open", "Mở", "打开")}</button>`
+      + (id === st.self ? "" : `<button class="link danger" data-app="${esc(id)}" data-a="uninstall" ${st.busy ? "disabled" : ""}>${tr("Remove", "Gỡ", "卸载")}</button>`);
+    return `<div class="row"><div class="grow"><div class="name">${esc(p.name || id)}${has ? " ✓" : ""}</div><small>${esc(p.description || "")}</small></div>${btns}</div>`;
+  }).join("");
+  box.querySelectorAll("[data-app]").forEach((b) => b.addEventListener("click", () => {
+    const { app, a } = b.dataset;
+    if (a === "uninstall" && !confirm(tr(`Remove ${catalog[app].name}?`, `Gỡ ${catalog[app].name}?`, `卸载 ${catalog[app].name}？`))) return;
+    act(async () => { await api(`/api/apps/${encodeURIComponent(app)}?action=${a}`, { body: {} }); watchApps(); });
+  }));
+  return st;
+}
+
+// Poll while KPM works in the background, then report how it went.
+async function watchApps() {
+  clearTimeout(watchApps.t);
+  const st = await loadApps();
+  // A slow Kindle (unpacking a big download) can miss a poll: keep trying.
+  if (!st) { if ($("#applist")) watchApps.t = setTimeout(watchApps, 4000); return; }
+  if (st.busy) { watchApps.t = setTimeout(watchApps, 2000); return; }
+  if (st.failed) openSheet(tr("Didn't work", "Không thành công", "未成功"), `<pre class="input" style="white-space:pre-wrap;margin:0;font-size:13px">${esc(st.log || "")}</pre>`);
+  else if (st.action) toast(tr("Done ✓", "Xong ✓", "完成 ✓"));
 }
 
 const APP_NAMES = { board: "Message Board", ha: "Home Assistant", calendar: "Calendar", monitor: "Monitor", http: "HTTP Server", dash: "Dashboard", ssh: "SSH", tailscale: "Tailscale" };
@@ -756,7 +806,7 @@ document.documentElement.lang = lang;
 $("#pair p").textContent = tr("Enter the PIN shown on your Kindle.", "Nhập PIN hiện trên Kindle.", "输入 Kindle 上显示的 PIN。");
 $("#away h1").textContent = tr("Kindle is offline", "Kindle đang offline", "Kindle 离线");
 $("#away p").textContent = tr("Make sure it's awake and on Wi-Fi. Trying again…", "Đánh thức Kindle và bật Wi-Fi. Đang thử lại…", "请唤醒 Kindle 并连接 Wi-Fi，正在重试…");
-for (const [k, en, vi, zh] of [["display", "Display", "Màn hình", "显示"], ["frame", "Frame", "Khung ảnh", "相框"], ["files", "Files", "Tệp", "文件"], ["device", "Device", "Thiết bị", "设备"]]) {
+for (const [k, en, vi, zh] of [["display", "Display", "Màn hình", "显示"], ["frame", "Frame", "Khung ảnh", "相框"], ["files", "Files", "Tệp", "文件"], ["apps", "Apps", "App", "应用"], ["device", "Device", "Thiết bị", "设备"]]) {
   const b = $(`#tabs [data-tab="${k}"]`);
   b.lastChild.textContent = tr(en, vi, zh);
 }

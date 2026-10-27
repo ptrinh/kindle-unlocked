@@ -11,8 +11,13 @@ export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
     switch (url.pathname) {
-      case "/r":
-        return env.ASSETS.fetch(new Request(new URL("/repo/manifest.v2.json", url), request));
+      case "/r": {
+        // CORS: the Remote web app (served by the Kindle) reads the catalog from here.
+        const res = await env.ASSETS.fetch(new Request(new URL("/repo/manifest.v2.json", url), request));
+        const out = new Response(res.body, res);
+        out.headers.set("Access-Control-Allow-Origin", "*");
+        return out;
+      }
       case "/d":
         return dashboard(request, url, ctx);
       case "/mirror.ps1": {

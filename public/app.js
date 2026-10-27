@@ -29,6 +29,11 @@ const T = {
     others: "Other options:",
     openGuide: "Open full guide",
     usbLead: "This one needs a computer and a USB cable. Follow the guide, then come back.",
+    aiTitle: "Have an AI agent?",
+    aiLead: "Claude Code, Codex, Cursor… Plug the Kindle into your computer, then paste this to the agent.",
+    aiPrompt: "My Kindle {name} on software {fw} is plugged into this computer by USB. Jailbreak it with {method}, following {guide}. Find the Kindle's USB drive, download the files the guide links to, check what they do, copy them to the Kindle and eject it safely. Don't touch other files on the Kindle and don't install firmware updates. Also download https://kindle.trinh.uk/ku-setup.sh into the Kindle's documents folder: after the jailbreak, I open it from the Library to connect the app store. Then tell me step by step what to do on the Kindle itself.",
+    copy: "Copy prompt", copied: "Copied",
+    orSelf: "Or do it yourself:",
     noneTitle: "Not yet.",
     noneLead: "There's no unlock for this Kindle and version yet.",
     noneTip1: "Don't update it. Turn on Airplane mode to stay on this version.",
@@ -37,13 +42,25 @@ const T = {
     before: "Wi-Fi on, battery above 50%.",
     jbDone: "Finished? Continue",
     storeQ: "Connect the app store",
-    storeLead: "On the Kindle home screen, tap the search bar and type each line, then press Enter.",
+    storeLead: "On the Kindle's <b>Home</b> screen, tap the search bar at the top and type each line, then press Enter.",
+    homeOk: "Home screen search bar", browserNo: "Not the web browser's address bar",
+    check: "Installs <b>HTTP Server</b> to manage the Kindle from your phone",
+    fbTitle: "Nothing happens? Use a computer instead",
+    pcLead: "You unlocked it with a computer, so use the computer once more. This connects the store and installs HTTP Server.",
+    typeTitle: "Or type commands on the Kindle",
+    typeNote: "On older software (like 5.12) the Kindle ignores commands with a dot in them, so step 2 does nothing there.",
+    fb1: "Download the setup file", fb2: "Plug the Kindle into the computer. Copy the file into the Kindle's <b>documents</b> folder, then eject it.",
+    fb3: "Turn Wi-Fi on, open the Library and tap <b>ku-setup</b>. It connects the store and installs HTTP Server, then shows a QR code for your phone.",
     restart: "Restart the Kindle once, then turn Wi-Fi on.",
     restartHint: "Settings → Device Options → Restart",
     type: "Type in the search bar",
     storeDone: "Choose apps",
     appsQ: "Pick your apps",
-    appsLead: "Tap one to see how to install it.",
+    appsLead: "Easiest: install and control everything from your phone.",
+    ph1: "On the Kindle, open the Library and tap <b>HTTP Server</b>. A QR code appears.",
+    ph2: "Scan it with your phone camera and add the page to your Home Screen.",
+    ph3: "Open the <b>Apps</b> tab and tap Install. No typing on the Kindle.",
+    orManual: "Or install from the Kindle's search bar: tap an app below.",
     install: "Install",
     installType: "In the Kindle search bar, type",
     openIt: "Open your Library and tap",
@@ -81,6 +98,11 @@ const T = {
     others: "Cách khác:",
     openGuide: "Mở hướng dẫn",
     usbLead: "Cách này cần máy tính và cáp USB. Làm theo hướng dẫn rồi quay lại đây.",
+    aiTitle: "Có AI agent?",
+    aiLead: "Claude Code, Codex, Cursor… Cắm Kindle vào máy tính, rồi dán đoạn này cho agent.",
+    aiPrompt: "Kindle {name}, phần mềm {fw}, đang cắm USB vào máy này. Jailbreak nó bằng {method} theo hướng dẫn {guide}. Tìm ổ USB của Kindle, tải các file hướng dẫn đưa, kiểm tra chúng làm gì, chép vào Kindle rồi tháo ra an toàn. Không đụng file khác trên Kindle, không cài bản cập nhật firmware. Tải thêm https://kindle.trinh.uk/ku-setup.sh vào thư mục documents của Kindle: jailbreak xong tôi mở nó trong Library để kết nối kho app. Sau đó hướng dẫn tôi từng bước cần làm trên Kindle.",
+    copy: "Chép prompt", copied: "Đã chép",
+    orSelf: "Hoặc tự làm:",
     noneTitle: "Chưa có.",
     noneLead: "Chưa có cách mở khoá cho Kindle và phiên bản này.",
     noneTip1: "Đừng cập nhật. Bật Airplane mode để giữ nguyên phiên bản.",
@@ -89,13 +111,25 @@ const T = {
     before: "Bật Wi-Fi, pin trên 50%.",
     jbDone: "Xong rồi? Tiếp tục",
     storeQ: "Kết nối kho app",
-    storeLead: "Ở màn hình chính Kindle, chạm thanh tìm kiếm, gõ từng dòng rồi nhấn Enter.",
+    storeLead: "Ở màn hình <b>Home</b> của Kindle, chạm thanh tìm kiếm trên cùng, gõ từng dòng rồi nhấn Enter.",
+    homeOk: "Thanh tìm kiếm ở màn hình Home", browserNo: "Không phải thanh địa chỉ của trình duyệt",
+    check: "Cài <b>HTTP Server</b> để quản lý Kindle từ điện thoại",
+    fbTitle: "Gõ mà không thấy gì? Dùng máy tính",
+    pcLead: "Bạn đã mở khoá bằng máy tính, nên dùng máy tính thêm một lần nữa. Bước này kết nối kho app và cài HTTP Server.",
+    typeTitle: "Hoặc gõ lệnh trên Kindle",
+    typeNote: "Trên phần mềm cũ (như 5.12), Kindle bỏ qua lệnh có dấu chấm, nên bước 2 sẽ không chạy.",
+    fb1: "Tải file cài đặt", fb2: "Cắm Kindle vào máy tính. Chép file vào thư mục <b>documents</b> của Kindle, rồi tháo ra.",
+    fb3: "Bật Wi-Fi, mở Library và chạm <b>ku-setup</b>. Nó kết nối kho app, cài HTTP Server rồi hiện mã QR cho điện thoại.",
     restart: "Khởi động lại Kindle một lần, rồi bật Wi-Fi.",
     restartHint: "Settings → Device Options → Restart",
     type: "Gõ vào thanh tìm kiếm",
     storeDone: "Chọn app",
     appsQ: "Chọn app",
-    appsLead: "Chạm vào app để xem cách cài.",
+    appsLead: "Dễ nhất: cài và điều khiển mọi thứ từ điện thoại.",
+    ph1: "Trên Kindle, mở Library và chạm <b>HTTP Server</b>. Mã QR sẽ hiện ra.",
+    ph2: "Quét bằng camera điện thoại, rồi thêm trang ra màn hình chính.",
+    ph3: "Mở tab <b>Apps</b> và chạm Cài. Khỏi gõ gì trên Kindle.",
+    orManual: "Hoặc cài từ thanh tìm kiếm của Kindle: chạm vào app bên dưới.",
     install: "Cài đặt",
     installType: "Gõ vào thanh tìm kiếm Kindle",
     openIt: "Mở Thư viện và chạm",
@@ -135,6 +169,11 @@ T.zh = {
   others: "其他方式：",
   openGuide: "打开完整教程",
   usbLead: "这种方式需要电脑和 USB 数据线。按教程操作后回到这里。",
+  aiTitle: "有 AI 助手？",
+  aiLead: "Claude Code、Codex、Cursor… 把 Kindle 连上电脑，然后把这段话粘贴给它。",
+  aiPrompt: "我的 Kindle {name}（软件版本 {fw}）已通过 USB 连接到这台电脑。请按照 {guide} 用 {method} 越狱它。找到 Kindle 的 USB 磁盘，下载教程里链接的文件，检查它们的作用，复制到 Kindle 并安全弹出。不要改动 Kindle 上的其他文件，也不要安装固件更新。另外把 https://kindle.trinh.uk/ku-setup.sh 下载到 Kindle 的 documents 文件夹：越狱后我在图书馆打开它来连接应用商店。然后一步步告诉我在 Kindle 上要做什么。",
+  copy: "复制提示词", copied: "已复制",
+  orSelf: "或者自己动手：",
   noneTitle: "暂时没有。",
   noneLead: "这款 Kindle 和版本目前还没有解锁方法。",
   noneTip1: "不要更新。打开飞行模式以保持当前版本。",
@@ -143,13 +182,25 @@ T.zh = {
   before: "打开 Wi-Fi，电量高于 50%。",
   jbDone: "完成了？继续",
   storeQ: "连接应用商店",
-  storeLead: "在 Kindle 主屏点击搜索栏，逐行输入并按回车。",
+  storeLead: "在 Kindle <b>主屏</b>点击顶部的搜索栏，逐行输入并按回车。",
+  homeOk: "主屏搜索栏", browserNo: "不是浏览器的地址栏",
+  check: "安装 <b>HTTP Server</b>，用手机管理 Kindle",
+  fbTitle: "输入后没反应？改用电脑",
+  pcLead: "你是用电脑解锁的，那就再用一次电脑。这一步会连接应用商店并安装 HTTP Server。",
+  typeTitle: "或者在 Kindle 上输入命令",
+  typeNote: "在较旧的系统（如 5.12）上，Kindle 会忽略含有句点的命令，所以第 2 步不会生效。",
+  fb1: "下载安装文件", fb2: "把 Kindle 连上电脑，把文件复制到 Kindle 的 <b>documents</b> 文件夹，然后弹出。",
+  fb3: "打开 Wi-Fi，进入图书馆，点击 <b>ku-setup</b>。它会连接应用商店并安装 HTTP Server，然后显示二维码供手机扫描。",
   restart: "先重启一次 Kindle，然后打开 Wi-Fi。",
   restartHint: "设置 → 设备选项 → 重启",
   type: "在搜索栏输入",
   storeDone: "选择应用",
   appsQ: "选择应用",
-  appsLead: "点一下查看安装方法。",
+  appsLead: "最简单：用手机安装和控制一切。",
+  ph1: "在 Kindle 上打开图书馆，点击 <b>HTTP Server</b>，会显示二维码。",
+  ph2: "用手机相机扫描，并把页面添加到主屏幕。",
+  ph3: "打开 <b>Apps</b> 标签，点安装。无需在 Kindle 上输入。",
+  orManual: "或者在 Kindle 搜索栏安装：点下面的应用。",
   install: "安装",
   installType: "在 Kindle 搜索栏输入",
   openIt: "打开图书馆并点击",
@@ -323,6 +374,28 @@ const PICK = [
   ["KT5", "Kindle", "2022"], ["KS", "Scribe", "2022"], ["KOA3", "Oasis", "2019"], ["PW4", "Paperwhite", "2018"], ["KT4", "Kindle", "2019"],
 ];
 
+// Where to type ;kpm commands: Home search bar, not the browser's address bar.
+const KINDLE_HOME = `<svg viewBox="0 0 240 300" role="img" aria-hidden="true">
+  <rect x="4" y="4" width="232" height="292" rx="18" fill="#1c1c1e"/><rect x="20" y="20" width="200" height="246" rx="3" fill="#e8e8e3"/>
+  <text x="30" y="36" font-size="9" fill="#555">Your Kindle</text><text x="208" y="36" font-size="9" fill="#555" text-anchor="end">11:02</text>
+  <rect x="28" y="46" width="184" height="26" rx="3" fill="#fff" stroke="#30d158" stroke-width="3"/>
+  <circle cx="41" cy="58" r="5" fill="none" stroke="#333" stroke-width="1.6"/><path d="m45 62 4 4" stroke="#333" stroke-width="1.6"/>
+  <text x="56" y="63" font-size="11" font-family="monospace" fill="#111">;kpm update</text>
+  <g fill="#c7c7c2"><rect x="30" y="88" width="40" height="58"/><rect x="78" y="88" width="40" height="58"/><rect x="126" y="88" width="40" height="58"/><rect x="174" y="88" width="36" height="58"/>
+  <rect x="30" y="160" width="40" height="58"/><rect x="78" y="160" width="40" height="58"/><rect x="126" y="160" width="40" height="58"/><rect x="174" y="160" width="36" height="58"/></g>
+  <circle cx="212" cy="58" r="15" fill="#30d158"/><path d="m205 58 5 5 9-10" fill="none" stroke="#000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
+const KINDLE_BROWSER = `<svg viewBox="0 0 240 300" role="img" aria-hidden="true">
+  <rect x="4" y="4" width="232" height="292" rx="18" fill="#1c1c1e"/><rect x="20" y="20" width="200" height="246" rx="3" fill="#e8e8e3"/>
+  <text x="30" y="36" font-size="9" fill="#555">Browser</text><text x="208" y="36" font-size="9" fill="#555" text-anchor="end">11:01</text>
+  <path d="M30 56 37 50 44 56M32 55v8h10v-8" fill="none" stroke="#333" stroke-width="1.5"/><path d="M62 57h-10m4-4-4 4 4 4" fill="none" stroke="#333" stroke-width="1.5"/>
+  <rect x="96" y="46" width="116" height="24" rx="2" fill="#fff" stroke="#ff453a" stroke-width="3"/>
+  <text x="104" y="62" font-size="10" font-family="monospace" fill="#111">;kpm update</text>
+  <rect x="46" y="120" width="148" height="76" fill="#fff" stroke="#333"/><text x="56" y="140" font-size="10" font-weight="700" fill="#111">Invalid Protocol</text>
+  <rect x="56" y="150" width="124" height="5" fill="#bbb"/><rect x="56" y="160" width="110" height="5" fill="#bbb"/><text x="176" y="186" font-size="9" fill="#111" text-anchor="end">OK</text>
+  <circle cx="212" cy="58" r="15" fill="#ff453a"/><path d="m206 52 12 12m0-12-12 12" stroke="#000" stroke-width="3" stroke-linecap="round"/>
+</svg>`;
+
 let MODELS = [];
 let JAILBREAKS = [];
 
@@ -412,6 +485,7 @@ const screens = {
   home() {
     return `<section class="screen">
       <div class="hero">
+        <img class="hero-logo" src="/icon.svg" alt="" width="76" height="76">
         <p class="eyebrow">${t("heroKicker")}</p>
         <h1>${t("hero")}</h1>
         <p class="lead">${t("heroLead")}</p>
@@ -480,7 +554,11 @@ const screens = {
           <li class="check"><div><p>${t("before")}</p></div></li>
           ${L(easy.steps).map(([a, b]) => `<li><div><p>${a}</p>${b === "url" ? `<span class="kbd big">${easy.url}</span>` : b ? `<small>${b}</small>` : ""}</div></li>`).join("")}
         </ol>`
-      : `<div class="empty"><p>${t("usbLead")}</p><div class="actions"><a class="btn primary" data-focus href="${guide}" target="_blank" rel="noopener">${t("openGuide")} ↗</a></div></div>`;
+      : `<div class="empty"><p>${t("usbLead")}</p>
+          <details class="ai"><summary data-focus>${t("aiTitle")}</summary><p>${t("aiLead")}</p>
+            <pre class="prompt" id="prompt">${esc(aiPrompt(best, guide))}</pre>
+            <button class="btn primary" data-focus id="copy">${t("copy")}</button></details>
+          <p>${t("orSelf")}</p><div class="actions"><a class="btn" data-focus href="${guide}" target="_blank" rel="noopener">${t("openGuide")} ↗</a></div></div>`;
 
     return `<section class="screen">${head}
       <div class="result">
@@ -497,15 +575,32 @@ const screens = {
   },
 
   store() {
-    return `<section class="screen">
-      <p class="eyebrow">${t("step")} 4 ${t("of")} 5</p>
-      <h1>${t("storeQ")}</h1>
-      <p class="lead">${t("storeLead")}</p>
+    const typed = `<div class="where2">
+        <figure class="ok">${KINDLE_HOME}<figcaption>✓ ${t("homeOk")}</figcaption></figure>
+        <figure class="no">${KINDLE_BROWSER}<figcaption>✗ ${t("browserNo")}</figcaption></figure>
+      </div>
       <div class="cmds">
         <div class="cmd"><span class="n">1</span><div><p>${t("restartHint")}</p><b>${t("restart")}</b></div></div>
         <div class="cmd"><span class="n">2</span><div><p>${t("type")}</p><span class="kbd big">;kpm add-repo kindle.trinh.uk/r</span></div></div>
         <div class="cmd"><span class="n">3</span><div><p>${t("type")}</p><span class="kbd big">;kpm update</span></div></div>
-      </div>
+        <div class="cmd"><span class="n">4</span><div><p>${t("check")}</p><span class="kbd big">;kpm install ku-http</span></div></div>
+      </div>`;
+    const pc = `<ol class="list">
+          <li><div><p>${t("fb1")}</p><a class="btn" data-focus href="/ku-setup.sh" download>ku-setup.sh ↓</a></div></li>
+          <li><div><p>${t("fb2")}</p></div></li>
+          <li><div><p>${t("fb3")}</p></div></li>
+        </ol>`;
+    // Kindles unlocked over USB are older firmware, where the search bar
+    // refuses any command containing a dot, so the repo can't be typed in.
+    const usb = unlockedOverUsb();
+    return `<section class="screen">
+      <p class="eyebrow">${t("step")} 4 ${t("of")} 5</p>
+      <h1>${t("storeQ")}</h1>
+      ${usb
+        ? `<p class="lead">${t("pcLead")}</p>${pc}
+          <details class="ai fallback"><summary data-focus>${t("typeTitle")}</summary><p class="sub">${t("typeNote")}</p>${typed}</details>`
+        : `<p class="lead">${t("storeLead")}</p>${typed}
+          <details class="ai fallback"><summary data-focus>${t("fbTitle")}</summary>${pc}</details>`}
       ${nav(state.model ? "unlock" : "", "apps", t("storeDone"))}
     </section>`;
   },
@@ -515,11 +610,28 @@ const screens = {
       <p class="eyebrow">${t("step")} 5 ${t("of")} 5</p>
       <h1>${t("appsQ")}</h1>
       <p class="lead">${t("appsLead")}</p>
+      <div class="cmds">
+        <div class="cmd"><span class="n">1</span><div><b>${t("ph1")}</b></div></div>
+        <div class="cmd"><span class="n">2</span><div><b>${t("ph2")}</b></div></div>
+        <div class="cmd"><span class="n">3</span><div><b>${t("ph3")}</b></div></div>
+      </div>
+      <p class="lead" style="margin-top:40px">${t("orManual")}</p>
       <div class="apps">${APPS.map(appTile).join("")}</div>
       <div class="actions"><a class="btn" data-focus href="#/store">${t("back")}</a></div>
     </section>`;
   },
 };
+
+function unlockedOverUsb() {
+  if (!state.model || !validFw(state.fw)) return false;
+  const best = methodsFor(state.model, state.fw)[0];
+  return !!best && !EASY[best.name];
+}
+
+function aiPrompt(jb, guide) {
+  const v = { name: `${modelName(state.model)} [${state.model}]`, fw: state.fw, method: jb.name, guide };
+  return t("aiPrompt").replace(/\{(\w+)\}/g, (_, k) => v[k]);
+}
 
 function validFw(v) {
   return !!v && /^\d+(\.\d+){1,5}$/.test(v);
@@ -572,6 +684,16 @@ function wire(r) {
     }));
   }
 
+  if (r === "unlock") {
+    const copy = document.getElementById("copy");
+    if (copy) copy.addEventListener("click", () => {
+      const text = document.getElementById("prompt").textContent;
+      const done = () => { copy.textContent = t("copied"); setTimeout(() => (copy.textContent = t("copy")), 2000); };
+      if (navigator.clipboard) navigator.clipboard.writeText(text).then(done, () => selectPrompt());
+      else selectPrompt();
+    });
+  }
+
   if (r === "firmware") {
     const input = document.getElementById("fw");
     const found = document.getElementById("found");
@@ -586,6 +708,13 @@ function wire(r) {
     input.addEventListener("input", show);
     input.addEventListener("keydown", (e) => { if (e.key === "Enter" && !next.disabled) next.click(); });
   }
+}
+
+function selectPrompt() {
+  const r = document.createRange();
+  r.selectNodeContents(document.getElementById("prompt"));
+  getSelection().removeAllRanges();
+  getSelection().addRange(r);
 }
 
 /* ---------- App sheet ---------- */

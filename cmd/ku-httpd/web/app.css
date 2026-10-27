@@ -60,6 +60,7 @@ h2 { font-size: 30px; letter-spacing: -.025em; margin: 18px 0 4px; }
 .row .val { color: var(--dim); }
 .row button.link { border: 0; background: none; color: var(--blue); font-weight: 600; cursor: pointer; padding: 6px; }
 .row button.link.danger { color: var(--red); }
+.row button.link:disabled { opacity: .35; cursor: default; }
 .empty { color: var(--faint); text-align: center; padding: 28px; }
 
 /* Switch */
@@ -87,7 +88,7 @@ textarea.input { min-height: 180px; resize: vertical; font: 16px/1.45 var(--mono
 
 /* Tab bar */
 .tabs { position: fixed; left: 50%; bottom: calc(14px + env(safe-area-inset-bottom)); transform: translateX(-50%); z-index: 6; display: flex; gap: 4px; padding: 6px; border-radius: 26px; background: #1c1c1ecc; backdrop-filter: blur(24px) saturate(1.6); -webkit-backdrop-filter: blur(24px) saturate(1.6); box-shadow: 0 10px 40px #000c, 0 0 0 1px #ffffff14 inset; }
-.tabs button { border: 0; background: none; display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 7px 14px; border-radius: 20px; font-size: 11px; font-weight: 600; color: var(--faint); cursor: pointer; min-width: 70px; transition: all .25s var(--ease); }
+.tabs button { border: 0; background: none; display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 7px 8px; border-radius: 20px; font-size: 11px; font-weight: 600; color: var(--faint); cursor: pointer; min-width: 60px; transition: all .25s var(--ease); }
 .tabs button svg { width: 24px; height: 24px; }
 .tabs button.on { color: var(--text); background: #ffffff1a; }
 

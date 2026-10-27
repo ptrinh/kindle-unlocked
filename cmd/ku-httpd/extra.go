@@ -128,18 +128,18 @@ func showCard() error {
 	img := image.NewGray(image.Rect(0, 0, w, h))
 	draw.Draw(img, img.Bounds(), image.White, image.Point{}, draw.Src)
 
-	unit := w / 90 // text scale so it reads well on any panel
-	if unit < 2 {
-		unit = 2
-	}
-	y := h / 10
-	drawText(img, "Kindle Remote", w/2, y, unit*2, true)
-	y += unit * 40
+	// Text scales: as large as fits the width, capped by the screen height so
+	// the whole card (title, QR, hints, PIN) fits on small panels like 600x800.
+	body := fitScale("Scan with your phone camera", w*9/10, h/60)
+	title := fitScale("Kindle Remote", w*8/10, h/30)
+	y := h / 16
+	drawText(img, "Kindle Remote", w/2, y, title, true)
+	y += 13*title + h/24
 
 	ip := wifiIP()
 	if ip == "" {
-		drawText(img, "Connect to Wi-Fi first,", w/2, y, unit, true)
-		drawText(img, "then tap Remote again.", w/2, y+unit*20, unit, true)
+		drawText(img, "Connect to Wi-Fi first,", w/2, y, body, true)
+		drawText(img, "then tap Remote again.", w/2, y+body*20, body, true)
 		return showImage(img)
 	}
 
@@ -149,17 +149,24 @@ func showCard() error {
 		return err
 	}
 	q.DisableBorder = true
-	size := w * 6 / 10
+	size := min(w*6/10, h*45/100)
 	qr := q.Image(size)
 	draw.Draw(img, image.Rect((w-size)/2, y, (w+size)/2, y+size), qr, image.Point{}, draw.Src)
-	y += size + unit*20
+	y += size + h/24
 
-	drawText(img, "Scan with your phone camera", w/2, y, unit, true)
-	y += unit * 26
-	drawText(img, "or open "+remoteURL(), w/2, y, unit, true)
-	y += unit * 18
-	drawText(img, "PIN  "+pin, w/2, y, unit*2, true)
+	drawText(img, "Scan with your phone camera", w/2, y, body, true)
+	y += 13*body + h/60
+	url := "or open " + remoteURL()
+	drawText(img, url, w/2, y, fitScale(url, w*9/10, body), true)
+	y += 13*body + h/30
+	drawText(img, "PIN  "+pin, w/2, y, fitScale("PIN  "+pin, w*8/10, body*2), true)
 	return showImage(img)
+}
+
+// fitScale returns the largest scale up to want at which s fits in maxW pixels.
+func fitScale(s string, maxW, want int) int {
+	width := font.MeasureString(basicfont.Face7x13, s).Ceil()
+	return max(1, min(want, maxW/max(width, 1)))
 }
 
 // drawText renders s with the 7x13 bitmap font, scaled up by `scale`.

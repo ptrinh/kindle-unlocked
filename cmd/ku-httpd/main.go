@@ -216,6 +216,10 @@ func main() {
 	api("DELETE /api/site", func(w http.ResponseWriter, r *http.Request) (any, error) {
 		return ok(deleteSite(r.URL.Query().Get("path")))
 	})
+	api("GET /api/apps", func(w http.ResponseWriter, r *http.Request) (any, error) { return listApps(), nil })
+	api("POST /api/apps/{id}", func(w http.ResponseWriter, r *http.Request) (any, error) {
+		return ok(appAction(r.PathValue("id"), r.URL.Query().Get("action")))
+	})
 	api("GET /api/scripts", func(w http.ResponseWriter, r *http.Request) (any, error) { return listScripts(), nil })
 	api("POST /api/scripts/{name}", func(w http.ResponseWriter, r *http.Request) (any, error) {
 		return runScript(r.PathValue("name"))

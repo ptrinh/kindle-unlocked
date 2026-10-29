@@ -36,8 +36,12 @@ Turn a Kindle into a tiny always-on computer: unlock it from its own browser, th
 | `ku-awake` | Keeps the Kindle (and Wi-Fi) awake |
 | `ku-update` | One tap to update every app |
 
-<p align="center"><img src="docs/img/btc-ticker.png" width="560" alt="BTC Ticker in landscape on a Kindle"></p>
-<p align="center"><sub>BTC Ticker: tap the price to rotate. Currency, update rate and language are set from the Remote.</sub></p>
+<table>
+<tr>
+<td align="center" valign="top"><img src="docs/img/remote.png" width="240" alt="The Remote web app on a phone"><br><sub><b>Remote</b> on your phone: put photos, PDFs, notes, drawings or a web page on the screen, and install and set up apps.</sub></td>
+<td align="center" valign="top"><img src="docs/img/btc-ticker.png" width="520" alt="BTC Ticker in landscape on a Kindle"><br><sub><b>BTC Ticker</b>: tap the price to rotate. Currency, update rate and language are set from the Remote.</sub></td>
+</tr>
+</table>
 
 **PC Mirror** shows your computer screen on the Kindle. It needs `ku-http` with Remote on.
 

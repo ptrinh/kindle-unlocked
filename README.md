@@ -4,16 +4,21 @@ Turn a Kindle into a tiny always-on computer: unlock it from its own browser, th
 
 **Website:** https://kindle.trinh.uk (English · 中文 · Tiếng Việt)
 
+![Calendar, Home Assistant, Monitor and Message Board panels on a Kindle](docs/img/panels.png)
+
+<sub>Calendar · Home Assistant · Monitor · Message Board: always-on wall panels, set up from your phone.</sub>
+
 ## How it works
 
 1. **Find your Kindle**: the site reads your serial number and software version, then picks the right unlock method. The live table comes from [kindlemodding.org](https://kindlemodding.org).
 2. **Unlock it**: most Kindles from 2019 onwards unlock straight from the Kindle's own browser (SpiderCat, Véra, Sanctuary), with no computer or cable.
-3. **Add apps**: in the Kindle search bar:
+3. **Add apps**: copy [`ku-setup.sh`](https://kindle.trinh.uk/ku-setup.sh) into the Kindle's `documents` folder and tap it in the Library. It connects the app store and installs HTTP Server. Or type this in the Home search bar (it doesn't work on 5.12, which blocks dots in search commands):
    ```
    ;kpm add-repo kindle.trinh.uk/r
    ;kpm update
    ;kpm install ku-http
    ```
+4. **Use your phone**: open HTTP Server on the Kindle, scan its QR code, and install or set up every other app from the Remote's Apps tab.
 
 ## Apps
 
@@ -31,6 +36,9 @@ Turn a Kindle into a tiny always-on computer: unlock it from its own browser, th
 | `ku-awake` | Keeps the Kindle (and Wi-Fi) awake |
 | `ku-update` | One tap to update every app |
 
+<p align="center"><img src="docs/img/btc-ticker.png" width="560" alt="BTC Ticker in landscape on a Kindle"></p>
+<p align="center"><sub>BTC Ticker: tap the price to rotate. Currency, update rate and language are set from the Remote.</sub></p>
+
 **PC Mirror** shows your computer screen on the Kindle. It needs `ku-http` with Remote on.
 
 - Mac: `curl -fsSL kindle.trinh.uk/mirror.sh | bash`
@@ -41,10 +49,11 @@ Turn a Kindle into a tiny always-on computer: unlock it from its own browser, th
 ```
 cmd/ku-sshd     SSH/SFTP server (Go)
 cmd/ku-httpd    HTTP Server + Remote web app (Go, web/ embedded)
-cmd/ku-panel    e-ink panels: board, calendar, ha, monitor (Go)
+cmd/ku-panel    e-ink panels: board, calendar, ha, monitor, btc (Go)
 internal/kindle drawing on the e-ink screen, lipc, framebuffer
 packages/       KPM packages (shell hooks + scriptlets); _lib/ku.sh is shared
-public/         kindle.trinh.uk static site, board page, mirror scripts
+public/         kindle.trinh.uk static site, board page, mirror scripts, ku-setup.sh
+docs/img/       README screenshots (panels rendered with ku-panel -out)
 worker/         Cloudflare Worker: /r repo, /d dashboard, /b board, APIs
 scripts/        build.sh (ARMv7 binaries + .kpkg repo)
 ```

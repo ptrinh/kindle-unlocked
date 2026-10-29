@@ -64,8 +64,25 @@ remove_scriptlet() {
 # Services keep the Kindle awake (Wi-Fi sleeps with the screen). Only let it
 # sleep again once none of them is running.
 release_awake() {
-    for s in ku-ssh ku-http tailscaled ku-board ku-ha ku-calendar ku-monitor; do running "$s" && return; done
+    for s in ku-ssh ku-http tailscaled ku-board ku-ha ku-calendar ku-monitor ku-btc; do running "$s" && return; done
     [ -f "$KU/dash.on" ] && return
     [ -f "$KU/awake.on" ] && return
     keep_awake 0
+}
+
+# KPM upgrades run the old package's uninstall hook, then the new one's
+# install hook. upgrade_stop NAME "$1" stops a running app (pid name NAME) and,
+# on an upgrade, upgrade_resume NAME starts it again, so Update Apps doesn't
+# leave wall displays and servers off.
+upgrade_stop() {
+    running "$1" || return 0
+    [ "$2" = "upgrade" ] && touch "$KU/$1.resume"
+    ./launch.sh
+}
+
+upgrade_resume() {
+    [ -f "$KU/$1.resume" ] || return 0
+    rm -f "$KU/$1.resume"
+    # In the background: some launch scripts wait for the network.
+    ./launch.sh >/dev/null 2>&1 &
 }

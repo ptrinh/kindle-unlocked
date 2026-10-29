@@ -1,4 +1,4 @@
 #!/bin/sh
 . ./ku.sh
-running ku-board && ./launch.sh
+upgrade_stop ku-board "$1"
 [ "$1" = "upgrade" ] || remove_scriptlet "ku-board.sh"

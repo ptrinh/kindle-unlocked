@@ -658,7 +658,7 @@ async function watchApps() {
   else if (st.action) toast(tr("Done ✓", "Xong ✓", "完成 ✓"));
 }
 
-const APP_NAMES = { board: "Message Board", ha: "Home Assistant", calendar: "Calendar", monitor: "Monitor", http: "HTTP Server", dash: "Dashboard", ssh: "SSH", tailscale: "Tailscale" };
+const APP_NAMES = { board: "Message Board", ha: "Home Assistant", calendar: "Calendar", monitor: "Monitor", btc: "BTC Ticker", http: "HTTP Server", dash: "Dashboard", ssh: "SSH", tailscale: "Tailscale" };
 
 async function loadConfigs() {
   const box = $("#configs");
@@ -668,8 +668,9 @@ async function loadConfigs() {
   box.querySelectorAll("[data-cfg]").forEach((b) => b.addEventListener("click", () => editConfig(b.dataset.cfg)));
 }
 
-async function editConfig(app) {
+async function editConfig(app, raw) {
   const res = await api("/api/config/" + encodeURIComponent(app)).catch((e) => ({ error: e.message }));
+  if (app === "btc" && !raw && !res.error) return editBtc(res);
   const text = res.error ? "" : JSON.stringify(res, null, 2);
   const card = openSheet(esc(APP_NAMES[app] || app), `<textarea class="input" id="cfg" spellcheck="false" style="min-height:46vh;font-size:14px">${esc(text)}</textarea>
     <p class="err" id="cfgerr" style="color:var(--red);min-height:20px;margin:8px 4px 0"></p>
@@ -679,6 +680,35 @@ async function editConfig(app) {
     try { JSON.parse(raw); } catch (e) { $("#cfgerr", card).textContent = e.message; return; }
     try {
       await api("/api/config/" + encodeURIComponent(app), { method: "PUT", body: JSON.parse(raw) });
+      closeSheet();
+      toast(tr("Saved ✓", "Đã lưu ✓", "已保存 ✓"));
+    } catch (e) { $("#cfgerr", card).textContent = e.message; }
+  });
+}
+
+// BTC Ticker gets a small form; everything else is plain JSON.
+function editBtc(cfg) {
+  const opt = (v, label, cur) => `<option value="${v}"${String(v) === String(cur) ? " selected" : ""}>${label}</option>`;
+  const field = (label, html) => `<label style="display:block;margin:0 4px 14px"><small style="display:block;margin:0 0 6px 4px">${label}</small>${html}</label>`;
+  const every = [[15, "15 s"], [30, "30 s"], [60, "1 min"], [120, "2 min"], [300, "5 min"], [900, "15 min"], [1800, "30 min"], [3600, "1 h"]];
+  const cur = cfg.interval_seconds || 30;
+  if (!every.some(([v]) => v === cur)) every.push([cur, cur + " s"]);
+  const card = openSheet("BTC Ticker", `
+    ${field(tr("Currency (ISO code, e.g. VND, EUR, JPY)", "Tiền tệ (mã ISO, vd: VND, EUR, JPY)", "货币（ISO 代码，如 VND、EUR、JPY）"),
+      `<input class="input" id="cur" maxlength="3" autocapitalize="characters" autocomplete="off" value="${esc(cfg.currency || "")}" style="text-transform:uppercase">`)}
+    ${field(tr("Update every", "Cập nhật mỗi", "更新频率"), `<select class="input" id="int">${every.map(([v, l]) => opt(v, l, cur)).join("")}</select>`)}
+    ${field(tr("Screen", "Màn hình", "屏幕"), `<select class="input" id="land">${opt(1, tr("Landscape", "Ngang", "横屏"), cfg.landscape ? 1 : 0)}${opt(0, tr("Portrait", "Dọc", "竖屏"), cfg.landscape ? 1 : 0)}</select>`)}
+    ${field(tr("Language", "Ngôn ngữ", "语言"), `<select class="input" id="lng">${opt("en", "English", cfg.lang)}${opt("vi", "Tiếng Việt", cfg.lang)}${opt("zh", "中文", cfg.lang)}</select>`)}
+    <p class="err" id="cfgerr" style="color:var(--red);min-height:20px;margin:0 4px"></p>
+    <div class="btns one"><button class="btn primary" id="cfgsave">${tr("Save", "Lưu", "保存")}</button></div>
+    <p style="text-align:center;margin:12px 0 0"><button class="link" id="cfgraw">${tr("Edit as JSON", "Sửa dạng JSON", "以 JSON 编辑")}</button></p>`);
+  $("#cfgraw", card).addEventListener("click", () => { closeSheet(); editConfig("btc", true); });
+  $("#cfgsave", card).addEventListener("click", async () => {
+    const code = $("#cur", card).value.trim().toUpperCase();
+    if (!/^[A-Z]{3}$/.test(code)) { $("#cfgerr", card).textContent = tr("Use a 3-letter code like VND.", "Nhập mã 3 chữ cái, vd: VND.", "请输入 3 个字母的代码，如 VND。"); return; }
+    const body = { ...cfg, currency: code, interval_seconds: +$("#int", card).value, landscape: $("#land", card).value === "1", lang: $("#lng", card).value };
+    try {
+      await api("/api/config/btc", { method: "PUT", body });
       closeSheet();
       toast(tr("Saved ✓", "Đã lưu ✓", "已保存 ✓"));
     } catch (e) { $("#cfgerr", card).textContent = e.message; }

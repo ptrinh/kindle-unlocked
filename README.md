@@ -24,6 +24,7 @@ Turn a Kindle into a tiny always-on computer: unlock it from its own browser, th
 | `ku-calendar` | **Calendar**: agenda from iCal links (Google Calendar…) and Todoist tasks |
 | `ku-ha` | **Home Assistant**: wall panel showing your entities |
 | `ku-monitor` | **Monitor**: uptime checks with history and ntfy alerts |
+| `ku-btc` | **BTC Ticker**: big Bitcoin price, 7-day chart and network stats, drawn natively (no browser) to run for months; tap the price to rotate |
 | `ku-ssh` | SSH + SFTP server |
 | `ku-tailscale` | Joins your Tailscale network (userspace networking, so no TUN is needed) |
 | `ku-dash` | Always-on web page (demo: `kindle.trinh.uk/d`) |

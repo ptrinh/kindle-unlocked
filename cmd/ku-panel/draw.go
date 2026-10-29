@@ -179,6 +179,13 @@ func NewCanvas(w, h int, reg, bold *Typeface) *Canvas {
 	return &Canvas{Gray: img, W: w, H: h, U: float64(w) / 100, reg: reg, bold: bold, faces: map[[2]int]*Face{}}
 }
 
+// Clear paints the canvas white again, so it can be reused for the next frame.
+func (c *Canvas) Clear() {
+	for i := range c.Pix {
+		c.Pix[i] = 255
+	}
+}
+
 // F returns a face whose size is `size` units (1 unit = 1% of screen width).
 func (c *Canvas) F(size float64, bold bool) *Face {
 	px := int(size * c.U)

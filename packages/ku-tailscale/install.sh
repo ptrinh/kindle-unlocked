@@ -25,3 +25,4 @@ if [ "$(cat "$dir/version" 2>/dev/null)" != "$ver" ]; then
 fi
 chmod +x "$dir/bin/"*
 install_scriptlet "ku-tailscale.sh"
+upgrade_resume tailscaled

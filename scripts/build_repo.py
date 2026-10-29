@@ -19,6 +19,7 @@ BINARIES = {
     "ku-ha": ["ku-panel"],
     "ku-calendar": ["ku-panel"],
     "ku-monitor": ["ku-panel"],
+    "ku-btc": ["ku-panel"],
 }
 
 

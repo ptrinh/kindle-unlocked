@@ -4,6 +4,7 @@
 //	ku-panel -mode ha        Home Assistant entities
 //	ku-panel -mode calendar  agenda from iCal links + Todoist tasks
 //	ku-panel -mode monitor   uptime checks for websites and servers
+//	ku-panel -mode btc       Bitcoin ticker (tap the price to rotate)
 //
 // Each mode reads <ku>/<mode>/config.json (created with defaults on first run,
 // re-read every cycle so edits apply without a restart).
@@ -21,6 +22,7 @@ import (
 	"os"
 	"os/signal"
 	"path/filepath"
+	"runtime/debug"
 	"syscall"
 	"time"
 	_ "time/tzdata"
@@ -40,20 +42,34 @@ var panels = map[string]func() panel{
 	"ha":       func() panel { return &homeAssistant{} },
 	"calendar": func() panel { return &calendar{} },
 	"monitor":  func() panel { return &monitor{} },
+	"btc":      func() panel { return &btcTicker{} },
 }
 
+// Optional panel features.
+type (
+	ownFonts interface {
+		typefaces(cfgPath string) (reg, bold *Typeface)
+	}
+	// rotator chooses landscape or portrait from its config.
+	rotator interface{ landscape(cfgPath string) bool }
+	// refresher flashes the screen on a timer instead of every 10th update.
+	refresher interface{ fullRefresh() time.Duration }
+)
+
 var (
-	kuDir  string
-	client = &http.Client{Timeout: 20 * time.Second}
+	kuDir     string
+	panelMode string
+	client    = &http.Client{Timeout: 20 * time.Second}
 )
 
 func main() {
-	mode := flag.String("mode", "board", "board | ha | calendar | monitor")
+	mode := flag.String("mode", "board", "board | ha | calendar | monitor | btc")
 	flag.StringVar(&kuDir, "ku", "/mnt/us/unlocked", "data folder")
 	out := flag.String("out", "", "render once into this PNG (for testing) instead of the screen")
 	size := flag.String("size", "", "screen size WxH (default: detect)")
 	flag.Parse()
 
+	panelMode = *mode
 	mk, ok := panels[*mode]
 	if !ok {
 		log.Fatalf("unknown mode %q", *mode)
@@ -71,10 +87,27 @@ func main() {
 	if *size != "" {
 		fmt.Sscanf(*size, "%dx%d", &w, &h)
 	}
-	reg, bold := loadTypefaces(kuDir)
+	var reg, bold *Typeface
+	if of, ok := p.(ownFonts); ok {
+		reg, bold = of.typefaces(cfgPath)
+	} else {
+		reg, bold = loadTypefaces(kuDir)
+	}
+	// Panels run for months: keep the heap small and return memory early.
+	debug.SetMemoryLimit(48 << 20)
+	debug.SetGCPercent(50)
+
+	// canvasSize is the screen, turned sideways when the panel wants the other orientation.
+	canvasSize := func() (int, int) {
+		if r, ok := p.(rotator); ok && r.landscape(cfgPath) != (w > h) {
+			return h, w
+		}
+		return w, h
+	}
 
 	if *out != "" {
-		c := NewCanvas(w, h, reg, bold)
+		cw, ch := canvasSize()
+		c := NewCanvas(cw, ch, reg, bold)
 		if _, err := p.render(c, cfgPath); err != nil {
 			errorScreen(c, err)
 		}
@@ -99,25 +132,85 @@ func main() {
 	}()
 	time.Sleep(2 * time.Second)
 
+	taps := make(chan image.Point, 1)
+	if _, ok := p.(tapper); ok {
+		go readTaps(w, h, taps)
+	}
+
 	var last [32]byte
+	var c *Canvas
+	var lastFull time.Time
 	updates := 0
 	shot := filepath.Join(os.TempDir(), "ku-panel.png")
 	for {
-		c := NewCanvas(w, h, reg, bold)
-		wait, err := p.render(c, cfgPath)
+		cw, ch := canvasSize()
+		full := false
+		if c == nil || c.W != cw || c.H != ch {
+			c, full = NewCanvas(cw, ch, reg, bold), true
+		} else {
+			c.Clear()
+		}
+		wait, err := safeRender(p, c, cfgPath)
 		if err != nil {
-			c = NewCanvas(w, h, reg, bold)
+			c.Clear()
 			errorScreen(c, err)
 			wait = time.Minute
 		}
 		if sum := sha256.Sum256(c.Pix); sum != last {
 			last = sum
 			// A full (flashing) refresh now and then clears e-ink ghosting.
-			kindle.Show(c.Gray, updates%10 == 0, shot)
+			if r, ok := p.(refresher); ok {
+				full = full || time.Since(lastFull) >= r.fullRefresh()
+			} else {
+				full = full || updates%10 == 0
+			}
+			if full {
+				lastFull = time.Now()
+			}
+			kindle.Show(c.Gray, full, shot)
 			updates++
 		}
-		time.Sleep(wait)
+		timer := time.NewTimer(wait)
+		// Saved settings show up within a few seconds, even with a long interval.
+		cfgTime := modTime(cfgPath)
+		poll := time.NewTicker(5 * time.Second)
+	wait:
+		for {
+			select {
+			case <-timer.C:
+				break wait
+			case <-poll.C:
+				if !modTime(cfgPath).Equal(cfgTime) {
+					timer.Stop()
+					break wait
+				}
+			case pt := <-taps:
+				if p.(tapper).tap(c, toCanvas(pt, w, h, c)) {
+					timer.Stop()
+					break wait
+				}
+			}
+		}
+		poll.Stop()
 	}
+}
+
+func modTime(path string) time.Time {
+	if fi, err := os.Stat(path); err == nil {
+		return fi.ModTime()
+	}
+	return time.Time{}
+}
+
+// safeRender turns a panic into an error screen instead of a dead panel.
+func safeRender(p panel, c *Canvas, cfgPath string) (wait time.Duration, err error) {
+	defer func() {
+		if r := recover(); r != nil {
+			log.Printf("panic: %v\n%s", r, debug.Stack())
+			err = fmt.Errorf("internal error: %v", r)
+		}
+	}()
+	return p.render(c, cfgPath)
 }
 
 func errorScreen(c *Canvas, err error) {

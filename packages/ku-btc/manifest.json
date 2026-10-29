@@ -1,0 +1,17 @@
+{
+  "manifest_version": 2,
+  "id": "ku-btc",
+  "name": "BTC Ticker",
+  "author": "kindle.trinh.uk",
+  "description": "Big Bitcoin price, 24h change, 7-day chart and network stats. Tap the price to rotate.",
+  "version": [
+    0,
+    1,
+    4
+  ],
+  "dependencies": [],
+  "supported_platforms": [
+    "kindlehf",
+    "kindlepw2"
+  ]
+}

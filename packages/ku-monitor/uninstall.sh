@@ -1,4 +1,4 @@
 #!/bin/sh
 . ./ku.sh
-running ku-monitor && ./launch.sh
+upgrade_stop ku-monitor "$1"
 [ "$1" = "upgrade" ] || remove_scriptlet "ku-monitor.sh"

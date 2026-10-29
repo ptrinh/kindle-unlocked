@@ -1,4 +1,4 @@
 #!/bin/sh
 . ./ku.sh
-running ku-calendar && ./launch.sh
+upgrade_stop ku-calendar "$1"
 [ "$1" = "upgrade" ] || remove_scriptlet "ku-calendar.sh"

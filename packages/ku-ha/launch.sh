@@ -10,7 +10,7 @@ if running ku-ha; then
 fi
 
 # One wall display at a time.
-for p in ku-board ku-ha ku-calendar ku-monitor; do
+for p in ku-board ku-ha ku-calendar ku-monitor ku-btc; do
     if running "$p"; then stop_daemon "$p"; sleep 2; fi
 done
 keep_awake 1

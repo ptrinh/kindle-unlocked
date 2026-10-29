@@ -231,6 +231,7 @@ const ICONS = {
   board: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/><path d="M8 9h8M8 13h5"/></svg>',
   home: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11 12 3l9 8"/><path d="M5 10v10h14V10"/><path d="M10 20v-5h4v5"/></svg>',
   cal: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16.5" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4M7.5 14h3M7.5 17.5h6"/></svg>',
+  btc: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5h6a3 3 0 0 1 0 6H8zm0 6h7a3.5 3.5 0 0 1 0 7H8zM8 5v13M10 3v2m3-2v2m-3 13v2m3-2v2M6 5h2M6 18h2"/></svg>',
   pulse: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2.5-6 5 12 2.5-6h4"/></svg>',
   mirror: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="13" height="9" rx="1.5"/><path d="M6 17h5M8.5 13v4"/><rect x="17" y="7" width="5" height="13" rx="1.2"/></svg>',
   update: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>',
@@ -299,6 +300,13 @@ const APPS = [
     desc: { en: "Checks your websites and servers every minute, with a history bar for each and a phone alert when something goes down.", vi: "Kiểm tra website và server mỗi phút, có lịch sử cho từng cái và báo về điện thoại khi có sự cố.", zh: "每分钟检查网站和服务器，显示历史记录，出故障时推送到手机。" },
     use: { en: "List what to check in Remote → Device → Apps → Monitor.", vi: "Khai báo những gì cần kiểm tra ở Remote → Thiết bị → Ứng dụng → Monitor.", zh: "在 Remote → 设备 → 应用 → Monitor 中列出要检查的服务。" },
     note: { en: "Alerts: put an ntfy topic URL in <code>ntfy</code>.", vi: "Cảnh báo: điền URL topic ntfy vào <code>ntfy</code>.", zh: "告警：在 <code>ntfy</code> 中填入 ntfy topic 地址。" },
+  },
+  {
+    id: "ku-btc", name: "BTC Ticker", icon: "btc", g: "linear-gradient(135deg,#ff9f0a,#3a2300)",
+    sub: { en: "Bitcoin price, always on", vi: "Giá Bitcoin, luôn hiển thị", zh: "比特币价格，常亮显示" },
+    desc: { en: "A big Bitcoin price with the 24h change, a 7-day chart, sats per dollar, block height, market cap and USDT in your own currency. Drawn natively, no browser, so it can run for months.", vi: "Giá Bitcoin cỡ lớn kèm % thay đổi 24h, biểu đồ 7 ngày, sats/USD, block height, vốn hoá và tỷ giá USDT theo đồng tiền bạn chọn. Vẽ trực tiếp, không qua trình duyệt, nên chạy được hàng tháng.", zh: "大字显示比特币价格、24 小时涨跌、7 日走势、每美元聪数、区块高度、市值以及 USDT 对你所选货币的汇率。原生绘制、不用浏览器，可连续运行数月。" },
+    use: { en: "Tap BTC Ticker in the Library. Tap the price to switch landscape/portrait, × to close.", vi: "Chạm BTC Ticker trong Thư viện. Chạm vào giá để xoay ngang/dọc, chạm × để thoát.", zh: "在书库中点 BTC Ticker。点价格切换横竖屏，点 × 关闭。" },
+    note: { en: "Currency (any ISO code: VND, EUR, JPY…), update rate, orientation and language: Remote → Device → Apps → BTC Ticker.", vi: "Tiền tệ (mã ISO bất kỳ: VND, EUR, JPY…), tần suất cập nhật, chiều màn hình và ngôn ngữ: Remote → Thiết bị → Ứng dụng → BTC Ticker.", zh: "货币（任意 ISO 代码：VND、EUR、JPY…）、更新频率、横竖屏和语言：Remote → 设备 → 应用 → BTC Ticker。" },
   },
   {
     id: "mirror", name: "PC Mirror", icon: "mirror", g: "linear-gradient(135deg,#8e8e93,#2c2c2e)", mac: true,

@@ -95,7 +95,9 @@ func ClearScreen() {
 func Show(img image.Image, full bool, path string) error {
 	w, h := ScreenSize()
 	var buf bytes.Buffer
-	if err := png.Encode(&buf, FitGray(img, w, h)); err != nil {
+	// Fastest compression: the file only lives in /tmp for eips to read.
+	enc := png.Encoder{CompressionLevel: png.BestSpeed}
+	if err := enc.Encode(&buf, FitGray(img, w, h)); err != nil {
 		return err
 	}
 	if err := os.WriteFile(path, buf.Bytes(), 0644); err != nil {
@@ -137,6 +139,15 @@ func FitGray(img image.Image, w, h int) *image.Gray {
 func rotate90(img image.Image) image.Image {
 	b := img.Bounds()
 	out := image.NewGray(image.Rect(0, 0, b.Dy(), b.Dx()))
+	if g, ok := img.(*image.Gray); ok && b.Min == (image.Point{}) { // fast path: wall panels redraw often
+		for y := 0; y < b.Dy(); y++ {
+			row := g.Pix[y*g.Stride:]
+			for x := 0; x < b.Dx(); x++ {
+				out.Pix[x*out.Stride+b.Dy()-1-y] = row[x]
+			}
+		}
+		return out
+	}
 	for y := b.Min.Y; y < b.Max.Y; y++ {
 		for x := b.Min.X; x < b.Max.X; x++ {
 			out.Set(b.Max.Y-1-y, x-b.Min.X, color.GrayModel.Convert(img.At(x, y)))
